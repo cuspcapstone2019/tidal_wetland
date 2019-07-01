@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Add labels to a FeatureLayer - 4.11</title>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.11/esri/themes/dark-blue/main.css"
+    />
+
+    <style>
+		
+		#app{
+			display: flex;
+			flex-direction: row;
+			
+			
+			}
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 700px;
+        width: 1000px;
+        background-color: black;
+				order:1;
+				display:flex;
+				flex-direction:column;
+		}
+	  #bg{
+	  	background : black;
+	  	color: aqua;
+			position:fixed;
+			left:370px
+	  	
+	  }
+		#label{
+			background : black;
+			color: aqua;
+			position:fixed;
+			left:490px
+		}
+		#svi{
+			background : black;
+			color: aqua;
+			position:fixed;
+			left:580px;
+		}
+		#select{
+			background: black;
+			color: aquamarine;
+			width: 130px;
+			height:20px;
+			position:fixed;
+			left:695px;
+			
+		
+			
+		}
+		#SLAMM{
+			background: black;
+			color: aquamarine;
+			width: 155px;
+			height:20px;
+			position:fixed;
+			left:835px;
+
+			}
+		#locate{
+			background: black;
+			color: aquamarine;
+			width: 130px;
+			height:20px;
+			position:relative;
+			
+			
+		}
+		#containerDiv {
+        background-color: black;
+        padding: 3px;
+        text-align: center;
+				color:ghostwhite;
+				display: none;
+				order:1
+      }
+
+    #title {
+        font-size: 13pt;
+      }
+		#esri_widgets_RendererSlider_0{
+				background-color: black;
+				
+				
+		}
+		.esri-handle-label-span{
+			  color:white;
+		}
+		
+		.esri-histogram-group rect{
+				fill: rgb(255,255,0);
+				fill-opacity:1 ;
+				border:0.5px solid white;
+		}
+		#sliderContainer {
+        display: flex;
+        flex-flow: row;
+				width:1000px;
+        padding: 0 12px;
+				order:2
+      }
+
+      #sliderValue {
+        flex: 0 0 100px;
+        order: 1;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+
+        font-size: 300%;
+      }
+
+      #sliderInnerContainer {
+        flex: 1 1 auto;
+        order: 2;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 20px;
+      }
+
+      #sliderLabels {
+        flex: 1 1 auto;
+        order: 1;
+
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      #rangeWrapper {
+        flex: 1 1 auto;
+        order: 2;
+
+        position: relative;
+        padding: 0 20px;
+      }
+
+      #sliderprobability {
+        width: 100%;
+      }
+			
+			#vertical_slider_container{
+				order:2;
+				height:700px;
+				width:150px;
+				
+			}
+			
+			#vertical_slider_innercontainer{
+				height:700px;
+				position:absolute;
+				order:2;
+				display:flex;
+				flex-direction: row;
+				
+				
+			}
+			#yearnumber{
+				order:1;
+				display:flex;
+				flex-direction: column;
+				width:40px;
+				align-items: stretch;
+				justify-content: space-between;
+				height:560px;
+				margin-top:80px;
+				margin-bottom: 60px;
+				
+			
+			}
+			#vertical_slider{
+				order:2;
+				-webkit-appearance: slider-vertical;
+				data-orientation="vertical";
+				height:80%;
+				margin-top: 80px;
+				margin-left:0px;
+				width:40px;
+				}	
+			.year{
+				color:white;
+			}
+			
+			#note{
+				order:3
+				margin-left:0px;
+			}
+			#button{
+				left:100px;
+				
+			}
+			p,li{
+				font-size:14px;
+			}
+			
+    </style>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://js.arcgis.com/4.11/"></script>
+
+  </head>
+
+  <body>
+	
+		
+	
+<button type="button" id ='bg'>Basemap Gallery</button>
+<button type="button" id = 'label'>Show labels</button>
+<button type="button" id = 'svi'>SVI census tract</button>
+<select id='select'>
+	<option name = '' value = ''>Select infrastures</option>
+	<option name = 'FACILITYNA'value = 'db94437d7f1c49a59088a41215be8db3'>School</option>
+	<option name = '' value = 'a43269933234440eb92844bcf869de72'>Police Stations</option>
+	<option name = '' value = '91ce1f2fadc84b388e1106710d604e6e'>Airports</option>
+	<option name = 'NAME' value = '3ba337162f174888adfacfa76c08073c'>Electric_Power</option>
+	<option name = 'FACILITYNA' value = '5e51a68deca344eba793f65a65102238'>Fire_Stations</option>
+	<option name = 'FACILITYNA' value = '66de080d2b644f49bb9aa7c7197eba3e'>Medical_facilities</option>
+	<option name = 'NAME' value = '15451746e08742239592e23573e9080d'>NOAA Coastal Energy</option>
+	<option name = 'NAME' value = 'cb9628a9c437447f9d883455236b24c0'>Railroad Passenger Stations</option>
+	<option name = 'FACILITYNA'value = 'af29be1c18b44d62882a79319f2c1a8b'>SPDES</option>
+	<option name = 'NAME' value = 'fb66e223867f439ca8a4e213418ff109'>USACE_Projects</option>
+	<option name = '' value = '0ccb805dd11d4d2eaf9667c36f6b26dc'>Water_Facilities</option>
+</select>
+<select id='SLAMM'>
+	<option name = '' value = ''>Select SLAMM Result</option>
+	<option name = 'FACILITYNA'value = 'db94437d7f1c49a59088a41215be8db3'>Below Salt Elevation</option>
+	<option name = '' value = 'a43269933234440eb92844bcf869de72'>Existing Marsh</option>
+	<option name = '' value = '91ce1f2fadc84b388e1106710d604e6e'>Habitat Change</option>
+	<option name = 'NAME' value = '3ba337162f174888adfacfa76c08073c'>Is Beach</option>
+	<option name = 'FACILITYNA' value = '5e51a68deca344eba793f65a65102238'>Is Coastal Marsh</option>
+	<option name = 'FACILITYNA' value = '66de080d2b644f49bb9aa7c7197eba3e'>Is Coastal Wetland</option>
+	<option name = 'NAME' value = '15451746e08742239592e23573e9080d'>Is Flood Development</option>
+	<option name = 'NAME' value = 'cb9628a9c437447f9d883455236b24c0'>Land To Open Water</option>
+	<option name = 'FACILITYNA'value = '16ff08f4eee14235a6077ef1fd6bca54'>New Coastal Marsh</option>
+	<option name = 'NAME' value = 'fb66e223867f439ca8a4e213418ff109'>New Flood Dev</option>
+</select>
+<select id='locate'>
+	<option name = '' value = ''>Version alpha 1.0</option>
+</select>
+	
+	<div id="app">
+		
+	
+    <div id="viewDiv">
+			<div id="containerDiv">
+				<span id="title">vunlerability index</span>
+				<div id="slider"></div>
+			</div>
+			<div id="sliderContainer" class="esri-widget">
+        <span id="sliderValue"></span>
+        <div id="sliderInnerContainer">
+          <div id="sliderLabels"><span>20%</span> <span>100%</span></div>
+          <div id="rangeWrapper">
+            <input
+              id="sliderprobability"
+              type="range"
+              min="20"
+              max="100"
+              step="1"
+              value="20"
+            />
+          </div>
+        </div>
+			</div>
+		</div>
+		<div id="vertical_slider_container">
+			
+			<div id="vertical_slider_innercontainer" class= 'esri-widget' >
+				
+				<div id="yearnumber">
+					<span id="2100" class= 'year'>
+						2100
+					</span>
+					<span id="2085" class = 'year'>
+						2085
+					</span>
+					<span id="2070" class = 'year'>
+						2070
+					</span>
+					<span id="2055" class = 'year'>
+						2055
+					</span>
+					<span id="2040" class = 'year'>
+						2040
+					</span>
+					<span id="2025" class= 'year'>
+						2025
+					</span>
+				</div>
+		
+				<input type="range" id="vertical_slider" min="2025" max="2100" step = '15' value="0"  orient="vertical"/> 
+			</div>
+			
+		</div>
+		<div id="note">
+			<h3> Note of Usage(reload the page if errors)</h3>
+			<p>The SLAMM result function is still under development but you can play with the probability slider with the default layer
+			when you open this page at the first time(Zoom in to see the change, the polygons are small)</p>
+			<p>Click Basemap Gallery to choose the basemap you like, double click will return to the default basemap</p>
+			<p>Choose any point of infrastructure layer will automatically add its label(no label if the data is missing) Click
+			show label to show or hide the label</p>
+			<p>Play with the slider of SVI layer to customize your data analysis</p>
+			
+			<h3 id = 'problem'>Functions that need to add</h3>
+			<p>Switch between SLAMM Uncertainty result</p>
+						<ul>
+							<li>change legend and title accordingly</li>
+						</ul>
+			<p>Vertical time slider functionality</p>
+						<ul>
+							<li> change year to change the Feature layer under one type of Uncertainty result</li>
+						</ul>
+			<p>Deterministic Result</p>
+						<ul>
+							<li> Combined with SVI census tract level? </li>
+						</ul>
+			<p>Cluster Analysis Result</p>
+						<ul>
+							<li> Realize fly-to function that can navigate to the cluster area </li>
+						</ul>
+		</div>
+	</div>
+	
+	
+	
+	
+		<script type="text/plain" id="percentage-arcade">
+				return $feature.RPL_THEMES * 100;
+		</script>
+		<script type="text/javascript">
+				var laeblClass;
+				var map;
+				var school;
+				var view;
+				var switchmap = true;
+				var layerid;
+				var svi;
+				var arcadeExpressionInfos = [
+          // Get Arcade expression returning the predominant demographic in the county:
+          // Whether the majority of people are in the labor force or not
+          {
+            name: "percentage-arcade",
+            title: "convert percentage number",
+            expression: document.getElementById("percentage-arcade").text
+          }
+        ];
+				
+				
+				var slider = document.getElementById("sliderprobability");
+        var sliderValue = document.getElementById("sliderValue");
+			  require([
+			    "esri/Map",
+			    "esri/views/MapView",
+			    "esri/layers/FeatureLayer",
+			    "esri/widgets/Search",
+					"esri/widgets/BasemapGallery",
+					"esri/renderers/smartMapping/creators/color",
+					"esri/renderers/smartMapping/statistics/histogram",
+					"esri/widgets/ColorSlider",
+					"esri/core/lang",
+					"esri/widgets/Legend"
+			  ], function(Map, MapView, FeatureLayer, Search,BasemapGallery,colorRendererCreator,histogram,ColorSlider,lang,Legend) {
+					
+			    /* -----------------------------
+					 Set label configuration
+					--------------------------------*/
+					labelClass = {
+			      // autocasts as new LabelClass()
+			      symbol: {
+			        type: "text", // autocasts as new TextSymbol()
+			        color: "yellow",
+			        haloColor: "black",
+			        font: {
+			          // autocast as new Font()
+			          family: "playfair-display",
+			          size: 5,
+			          weight: "bold"
+			        }
+			      },
+			      labelPlacement: "above-center",
+			      labelExpressionInfo: {
+			        expression: "$feature.FACILITYNA"
+			      }
+			    };
+				/* -----------------------------
+										Set Basemap
+				--------------------------------*/
+				map =  new Map({
+			        basemap:{ portalItem: {
+			          // autocasts as new PortalItem
+			          id: "4f2e99ba65e34bb8af49733d9778fb8e"
+			        }
+			        },
+			      })
+				/* -----------------------------------------------
+									Set point infrastructure FeatureLayer
+				----------------------------------------------------*/
+				school = new FeatureLayer({
+				portalItem: {
+				  // autocasts as new PortalItem
+				  id: "db94437d7f1c49a59088a41215be8db3"
+				},
+				labelingInfo: [labelClass],
+				renderer: {
+				  type: "simple", // autocasts as new SimpleRenderer()
+				  symbol: {
+					type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+					color: "rgba(255,255,0,1)",
+					size: 3,
+					outline: {
+					  color: [0, 0, 0, 0.1],
+					  width: 0.5
+					}
+				  }
+				}
+			          })
+								
+								
+				/* -----------------------------
+									Set svi FeatureLayer
+				--------------------------------*/
+				
+				svi = new FeatureLayer({
+					portalItem:{
+						id: "93468c6c56f24db8acd460a86fe92abf"
+					},
+					definitionExpression: "RPL_THEMES > 0",
+					outFields: ["RPL_THEMES", "F_TOTAL", "COUNTY"],
+					popupTemplate:{
+						title:"Social Vulnerability Index",
+						content:
+							"This tracts is in <b>{COUNTY}</b>.It's vunlerability is above <b>{expression/percentage-arcade}%</b> percentile with the vunlerability level <b>{F_TOTAL}</b>",
+							fieldInfos:[
+								{
+									fieldName:"RPL_THEMES",
+									format:{
+										
+										digitSeparator:true,
+										places:0
+									}
+								
+								}
+							],
+							expressionInfos: arcadeExpressionInfos
+					},
+					
+				})
+				 // configure parameters for the color renderer generator
+        // the layer must be specified along with a field name
+        // or arcade expression. The basemap and other properties determine
+        // the appropriate default color scheme.
+
+        var colorParams = {
+          layer: svi,
+          basemap: map.basemap,
+          field: "RPL_THEMES",
+          theme: "above-and-below",
+					colorScheme: {
+          id: "above-and-below/gray/div-blue-red",
+          colors: [[0,225,255],[0,110,255],[56,0,255],[158,0,0],[255,0,0]],
+          noDataColor: [0,0,0],
+          colorsForClassBreaks: [
+            {
+              colors: [[255,0,0]],
+              numClasses: 1
+            }, {
+              colors: [[255,0,0],[255,255,255]],
+              numClasses: 2
+            }, {
+              colors: [[255,0,0],[255,255,255],[0,0,255]],
+              numClasses: 3
+            }, {
+              colors: [[255,0,0],[170,0,85],[85,0,170],[0,0,255]],
+              numClasses: 4
+            }, {
+              colors: [[255,0,0],[255,127,127],[255,255,255],[127,127,255],[0,0,255]],
+              numClasses: 5
+            }, {
+              colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[127,127,255],[0,0,255]],
+              numClasses: 6
+            }, {
+              colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[170,170,255],[85,85,255],[0,0,255]],
+              numClasses: 7
+            }, {
+              colors: [[255,0,0],[255,63,63],[255,127,127],[255,191,191],[255,255,255],[170,170,255],[85,85,255],[0,0,255]],
+              numClasses: 8
+            }, {
+              colors: [[255,0,0],[255,63,63],[255,127,127],[255,191,191],[255,255,255],[191,191,255],[127,127,255],[63,63,255],[0,0,255]],
+              numClasses: 9
+            }, {
+              colors: [[255,0,0],[255,63,63],[255,127,127],[255,191,191],[255,255,255],[204,204,255],[153,153,255],[102,102,255],[51,51,255],[0,0,255]],
+              numClasses: 10
+            }
+          ],
+          outline: {
+            color: {r: 153, g: 153, b: 153, a: 0.25},
+            width: "0.5px"
+          },
+          opacity: 0.8
+        }
+					
+					};
+				 // Set up initial color slider properties.
+        // numHandles determines whether 2 or 3 handles
+        // will be visible in the slider. The primary handle
+        // (middle one of the three) controls all handles
+        // when moved if `syncedHandles` is true.
+
+        var sliderParams = {
+          numHandles: 3,
+          syncedHandles: true,
+          container: "slider",
+        };
+				// Generate a continuous color renderer based on the
+        // statistics of the data in the provided layer
+        // and field normalized by the normalizationField.
+        //
+        // This resolves to an object containing several helpful
+        // properties, including color scheme, statistics,
+        // the renderer and visual variable
+
+				colorRendererCreator
+          .createContinuousRenderer(colorParams)
+          .then(function(response) {
+            // set the renderer to the layer and add it to the map
+
+            svi.renderer = response.renderer;
+            // add the statistics and color visual variable objects
+            // to the color slider parameters
+
+            sliderParams.statistics = response.statistics;
+            sliderParams.visualVariable = response.visualVariable;
+
+            // generate a histogram for use in the slider. Input the layer
+            // and field or arcade expression to generate it.
+
+            return histogram({
+              layer: svi,
+              field: "RPL_THEMES",
+            });
+          })
+          .then(function(histogram) {
+            // when it resolves set the histogram in the slider parameters
+            sliderParams.histogram = histogram;
+						
+					// input the slider parameters in the slider's constructor
+            // and add it to the view's UI
+
+            var colorSlider = new ColorSlider(sliderParams);
+            
+						// when the user slides the handle(s), update the renderer
+            // with the updated color visual variable object
+
+            colorSlider.on("data-change", function() {
+              var renderer = svi.renderer.clone();
+              renderer.visualVariables = [
+                lang.clone(colorSlider.visualVariable)
+              ];
+              svi.renderer = renderer;
+            });
+          })
+          .catch(function(error) {
+            console.log("there was an error: ", error);
+          });
+
+
+				/* -----------------------------
+									Set Marsh FeatureLayer
+				--------------------------------*/
+				var layer = new FeatureLayer({
+          portalItem: {
+            id: "16ff08f4eee14235a6077ef1fd6bca54"
+          },
+          definitionExpression: "Year =2025",
+          title: "New Coastal Marsh",
+        });
+				map.add(layer);
+				function inputHandler() {
+          setYear(parseInt(slider.value));
+					console.log(slider.value)
+        }
+        slider.addEventListener("input", inputHandler);
+        slider.addEventListener("change", inputHandler);
+
+				
+				setYear(80);
+				//  Setup UI
+        //
+        //--------------------------------------------------------------------------
+				/**
+         * Sets the current visualized construction year.
+         */
+        function setYear(value) {
+          sliderValue.innerHTML = Math.floor(value)+'%';
+          slider.value = Math.floor(value);
+          layer.renderer = createRenderer(value);
+        }
+
+
+				/**
+         * Returns a renderer with a color visual variable driven by the input
+         * year. The selected year will always render buildings built in that year
+         * with a light blue color. Buildings built 20+ years before the indicated
+         * year are visualized with a pink color. Buildings built within that
+         * 20-year time frame are assigned a color interpolated between blue and pink.
+         */
+        function createRenderer(year) {
+          var opacityStops = [
+            {
+              opacity: 1,
+              value: year
+            },
+            {
+              opacity: 0,
+              value: year + 1
+            }
+          ];
+
+          return {
+            type: "simple",
+            symbol: {
+              type: "simple-fill",
+              color: "rgb(0, 0, 0)",
+              outline: null
+            },
+            visualVariables: [
+              {
+                type: "opacity",
+                field: "gridcode2",
+                stops: opacityStops,
+                legendOptions: {
+                  showLegend: false
+                }
+              },
+              {
+                type: "color",
+                field: "gridcode2",
+                legendOptions: {
+                  title: "New Coastal Marsh develop Probability:"
+                },
+                stops: [
+                  {
+                    value: year,
+                    color: "#0ff",
+                    label: Math.floor(year)+'%'
+                  },
+                  {
+                    value: year - 10,
+                    color: "#f0f",
+                    label: (Math.floor(year) - 10)+'%'
+                  },
+                  {
+                    value: year - 20,
+                    color: "#404",
+                    label: (Math.floor(year) - 20)+"%"
+                  }
+                ]
+              }
+            ]
+          };
+        }
+				
+				
+				
+				/* -----------------------------
+										Set Mapview
+				--------------------------------*/
+			  view = new MapView({
+			      container: "viewDiv",
+			      map:map,
+			      center: [-73.967569, 40.727724],
+			      zoom: 12,
+			  constraints: {
+				snapToZoom: false,
+			  minScale: 200000.819286
+			  },
+			  // This ensures that when going fullscreen
+			  // The top left corner of the view extent
+			  // stays aligned with the top left corner
+			  // of the view's container
+			  resizeAlign: "top-left"
+			    });
+			    // Adds the search widget to the top right corner of the view
+			    view.ui.add(
+			      new Search({
+			        view: view
+			      }),
+			      "top-right"
+			    );
+					var slammlegend = new Legend({
+					    view: view
+					  });
+					view.ui.add(
+					  slammlegend,
+					  "bottom-left"
+					);
+			/* -----------------------------
+						Set BasemapGallery
+			--------------------------------*/
+			var basemapGallery = new BasemapGallery({
+				view: view,
+				source: {
+				  portal: {
+					url: "https://www.arcgis.com",
+					useVectorBasemaps: false  // Load vector tile basemaps
+				  }
+				}
+			  });
+			  
+			//////////////////////////////////////////////
+			//        control basemap gallery show       //
+			///////////////////////////////////////////////
+			var isshow = true;
+			var gallery = document.getElementById('bg');
+			gallery.onclick = function(){
+				if (isshow){
+					view.ui.add(basemapGallery, "top-right");
+					isshow = !isshow;
+					}
+				else{
+					view.ui.remove(basemapGallery);
+					isshow = !isshow; 
+				}
+			}
+			gallery.ondblclick = function(){
+				map.basemap = {
+					portalItem: {
+						id: "4f2e99ba65e34bb8af49733d9778fb8e"
+						}
+				};
+			}
+			/* -----------------------------
+						Control Label show up
+			--------------------------------*/
+			var labelbt = document.getElementById('label');
+			labelbt.onclick = function(){
+				if (current_infra.labelingInfo === ''){
+					current_infra.labelingInfo = labelClass;
+				}
+				else{
+					current_infra.labelingInfo = '';
+				}
+				
+			}
+			/* -----------------------------
+			  Control Infrastructure choice
+			--------------------------------*/
+			var selectionframe = document.getElementById('select');
+			var current_infra;
+			selectionframe.addEventListener("change", function(){
+				let index = selectionframe.selectedIndex;
+				let id = selectionframe.value;
+				let name = selectionframe.options[index].getAttribute('name');
+				map.removeAll();
+				changelabel(name);
+				current_infra = createmap(id);
+				map.add(current_infra)
+				
+				
+			})
+			/* -----------------------------
+			  Control Infrastructure choice
+			--------------------------------*/
+			function createmap(layerid){
+				let newlayer = new FeatureLayer({
+					portalItem: {
+					  // autocasts as new PortalItem
+					  id: layerid
+					},
+					labelingInfo: [labelClass],
+					renderer: {
+					  type: "simple", // autocasts as new SimpleRenderer()
+					  symbol: {
+						type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+						color: "rgba(255,255,0,1)",
+						size: 3,
+						outline: {
+						  color: [0, 0, 0, 0.1],
+						  width: 0.5
+						}
+					  }
+					}
+				})
+				return newlayer;
+				
+				}
+			/* ---------------------------------------------
+			  Change label name for different infrastructure
+			------------------------------------------------*/
+			function changelabel(name){
+				labelClass.labelExpressionInfo.expression ="$feature."+name;
+			}
+				
+			/* ---------------------------------------------
+			  Contorl SVI FeatureLayer showing
+			------------------------------------------------*/
+			var svibt= document.getElementById('svi');
+			var container = document.getElementById('containerDiv')
+			var svishow = true;
+			view.ui.add("containerDiv", "bottom-left");
+			svibt.onclick = function(){
+				if (!svishow){
+					map.remove(svi);
+					container.style.display = 'none';
+					svishow=!svishow;
+				}
+				else{
+				map.removeAll();
+				map.add(svi);
+				view.ui.remove(slammlegend);
+				container.style.display = 'block';
+				svishow=!svishow;
+				}
+			}
+			
+			// /* -----------------------------
+			//   Control SLAMM choice
+			// --------------------------------*/
+			// var SLAMMselect = document.getElementById('SLAMM');
+			// var current_SLAMM;
+			// SLAMMselect.addEventListener("change", function(){
+			// 	let index = SLAMMselect.selectedIndex;
+			// 	let id = SLAMMselect.value;
+			// 	let name = SLAMMselect.options[index].getAttribute('name');
+			// 	map.removeAll();
+			// 	current_SLAMM = createSLAMM(id);
+			// 	map.add(current_infra)				
+		});
+		</script>
+		
+		
+		
+		
+  </body>
+	
+	
+	
+	
+</html>
