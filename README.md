@@ -1,1 +1,1 @@
-This is cusp capstone project repository. 
+This is cusp capstone project repository with GitHub Pages.
