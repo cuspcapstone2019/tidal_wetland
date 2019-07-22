@@ -8,10 +8,10 @@
 
 
 
-#### What is  [name of the tool]
+## What is  [name of the tool]
 The WebGIS tools provide visualization and analysis function for various different sources of data related to coastal marsh, which includes SLAMM model results, Social vulnerability index, pluto landuse data and census tract demorgraphic data. It integrated large amount of pre-processed data and quick function such as query data by drawing, dynamic data-driven dashboards, time and probability sliders and animation. 
 
-#### How the [name] tool is builts?
+## How the [name] tool is builts?
 The layout framwork of the tool is built by [dojo](https://dojotoolkit.org/) 
 
 the Map and function inside the map are built by [Arcgis javascript API](https://developers.arcgis.com/javascript/). 
@@ -21,7 +21,7 @@ We use ArcGIS online portal to host all of our data, which have already been cle
 The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.js](https://www.chartjs.org/) 
 
 
-#### What are the advantage of [Name of the tool] compared with Arcmap/QGIS/Other WebGIS application?
+## What are the advantage of [Name of the tool] compared with Arcmap/QGIS/Other WebGIS application?
 | Feature | [Name of the tool] | Arcmap | Other WebGIS
 | :------: | :------: | :------: |:------: |
 | Difficulty | <font color="#0099ff">Very Easy</font> | Hard | Very easy|
