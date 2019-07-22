@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<!-- don't change the order! -->
+	<!-- loading package -->
+	<script src="pace.js"></script>
+	<link rel="stylesheet" href="loading.css"/>
+	<!-- d3 -->
+	<script src="https://d3js.org/d3.v3.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<script src = 'd3.layout.cloud.js' type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<!-- dojo style for layout -->
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.8/dijit/themes/claro/claro.css" />
+	<!-- arcgis style -->
+	<link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/dark-blue/main.css"/>
+	<!-- my layout style -->
+	<link rel="stylesheet" href="layout.css"/>
+
+	<!-- Arcgis API -->
+	<script>dojoConfig = {parseOnLoad: true}</script>
+	<script src="https://js.arcgis.com/4.12/"></script>
+	
+</head>
+<body class="claro">
+    <div data-dojo-type="dijit/layout/BorderContainer" style="width: 100%; height: 100%" id ='border'>
+	 
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="minSize:1, region:'leading', splitter : 'true'" id = 'left' class = 'flexcroll'>Leading pane
+		<div id='panel'>
+			<div id="note">
+				
+				<div id="choice-Display">
+					
+						<div id="SLR-Year-display">
+							<span id = "Year-display"></span>   </br>
+							<span id = "SLR-display"></span>  
+						</div>
+						
+						<div id="Infra-Uncertain-display">
+							<span id="Infra-display"></span></br>
+							<span id="Uncertainty-display"></span> 
+							
+							
+						</div>
+						 
+					
+				</div>
+				<div id="resultDiv">
+				  <div class="charts">
+					  <div>
+						<canvas id="landuse-chart" height="250" width="400" />
+					  </div>
+					  <div>
+					    <canvas id="material-chart" width="250" height="300" />
+						
+					  </div>
+					  <div>
+					    <canvas id="value-chart" width="400" height="250" />
+					  </div>
+					  <div>
+						
+					  	<canvas id="deter-chart" width="250" height="400" />
+					  </div>
+					  
+					  <h3 style='color:White'>World Cloud of OwnerName by Share area</h3>
+					  <div id = 'd3-chart' width='500' height = '400'>
+						<svg></svg>
+						</div>
+				  </div>
+				</div>
+				<div id="aboutpage">
+					
+				
+					<h3> This time I won't write any update and improve. Try to discover new things~</h3>
+					<!-- <ul>
+					<li>New Layout!! More Consice!! You can adjust the panel and map size dynamically!</li>
+					</br>
+					<li>Discover more new things yourself!</li>
+					</br>
+					</ul>
+					
+					<h3> New Features</h3>
+					<ul>
+						<li>Animation function. Get your surprise by animating infrastructures~</li>
+						</br>
+						<li>Generate more charts!</li>
+						</br>
+					</ul>
+					
+					<h3 id = 'problem'>Functions that need to add</h3>
+					<p>Fly-to bookmark</p>
+								<ul>
+									<li>A list of pre-selected areas to fly</li>
+								</ul>
+					
+					<p>Multiple layer querying</p>
+								<ul>
+									<li>generate chart from multiple layers</li>
+								</ul>
+							 -->
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+	 
+     <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" id = 'app'>
+		
+		<div id="viewDiv">
+			<div id="containerDiv">
+				<span id="title">vunlerability index</span>
+				<div id="slider"></div>
+			</div>
+				
+			<div id="sliderContainer" class="esri-widget">
+				<span id="sliderValue"></span>
+				<div id="sliderInnerContainer">
+					<div id="sliderLabels">
+						<span id = '2008' class= 'year'>2008</span> 
+						<span id = '2025' class= 'year'>2025</span> 
+						<span id = '2040' class= 'year'>2040</span>
+						<span id = '2055' class= 'year'>2055</span>
+						<span id = '2070' class= 'year'>2070</span>
+						<span id = '2085' class= 'year'>2085</span>
+						<span id = '2100' class= 'year'>2100</span>
+						</div>
+					<div id="rangeWrapper">
+							<input
+								id="slideryear"
+								type="range"
+								min="2010"
+								max="2100"
+								step="15"
+								value="2085"
+									/>
+					</div>
+					
+				</div>
+				 <div
+				  id="playButton"
+				  class="esri-widget esri-widget--button toggle-button">
+				  <div>
+					<span
+					  class="toggle-button-icon esri-icon-play"
+					  aria-label="play icon"
+					></span>
+					Play
+				  </div>
+				  <div>
+					<span
+					  class="toggle-button-icon esri-icon-pause"
+					  aria-label="pause icon"
+					></span>
+					Pause
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div id="vertical_slider_container">
+		
+			<div id="vertical_slider_innercontainer" class= 'esri-widget' >
+				<div id="probability_container">80%</div>
+				
+				
+				<div id="innerinnercontainer">
+					<div id="yearnumber">
+						<span >100%</span>
+						<span>20%</span>
+						
+					</div>
+									
+					<input type="range" id="vertical_slider" min="20" max="100" step = '1' value="85"  orient="vertical"/> 
+				</div>
+				
+				
+			</div>
+			
+		</div>
+		
+		<div id="infoDiv" class = "esri-widget">
+			<b>Filter by geometry</b>
+			</br>
+			Select the layers to filter on:
+			</br>
+			<input type="checkbox" id="featureLayerViewFilter" checked /> Pluto
+			<input type="checkbox" id="parkingLayerViewFilter" checked /> Deterministic
+			<br />Draw a geometry to filter by:
+			<div class="geometry-options">
+				<button
+				  class="esri-widget--button esri-icon-map-pin geometry-button"
+				  id="point-geometry-button"
+				  value="point"
+				  title="Filter by point"
+				></button>
+				<button
+				  class="esri-widget--button esri-icon-polyline geometry-button"
+				  id="line-geometry-button"
+				  value="polyline"
+				  title="Filter by line"
+				></button>
+				<button
+				  class="esri-widget--button esri-icon-polygon geometry-button"
+				  id="polygon-geometry-button"
+				  value="polygon"
+				  title="Filter by polygon"
+				></button>
+			</div>	
+			</br>
+			<label for="relationship-select">Spatial relationship:</label>
+			<select id="relationship-select" class="options">
+				<option value="intersects">intersects</option>
+				<option value="contains" selected>contains</option>
+				<option value="disjoint">disjoint</option> </select
+			  ><br /><br />
+			 <div class="tooltip">
+				 <label for="bufferNum">Buffer geometry in meters:</label>
+				<span id="bufferValueNum">0</span> <br />
+					0<input
+					  id="bufferNum"
+					  type="range"
+					  min="0"
+					  max="1000"
+					  value="0"
+					  tabindex="1"
+					/>1000
+			</div>
+			<br /><br />
+			  <button class="esri-button" id="clearFilter" type="button">
+				Disable filter
+			  </button>
+			  </br>
+			  <!-- <button class="esri-button" id="clearFilter" type="button">
+			  	Clear everything
+			  </button> -->
+		
+		</div>
+		
+		<div id = 'gotolist'class="panel-container esri-widget">
+			<div class="panel-side esri-widget flexcroll">
+			<h3>Go to area</h3>
+			<ul id="nyc_graphics">
+				<li id = "Origin" class = 'panel-result'>Origin</li>
+				<li id = "BroadChannel" class = 'panel-result'>Broad Channel in Queens</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+				<li class = 'panel-result'>Loading&hellip;</li>
+			</ul>
+			</div>
+		</div>
+		<div id="Deterministic" class = "esri-widget">
+			<b>Select SLAMM Result type</b></br>
+			<button type="button" id = 'deter'>Deterministic</button>&nbsp &nbsp <button type="button" id = 'Uncertain'>Uncertainty</button>
+			</br>
+			</br>
+			<div id="deterbox">
+				
+			
+			 <label for="Sea-level-Rise">Select Sea Level Rise Rate</label>
+			 <select id="Sea-level-Rise" class="options">
+				<option id = 'slrselect' value='1' selected>Sea Level Rise Rate</option>
+			 	<option value="low">Low</option>
+			 	<option value="low_medium">Low-Medium</option>
+			 	<option value="medium" >Medium</option>
+				 <option value="high_medium" >High-Meidum</option>
+				 <option value="high">High</option>
+				 <option value="low_inund" >Inundation:Low</option>
+				 <option value="low_medium_inund" >Inundation:Low-Medium</option>
+				 <option value="medium_inund" >Inundation:Medium</option>
+				 <option value="high_medium_inund" >Inundation:High_medium</option>
+				 <option value="high_inund" >Inundation:High</option>
+				</select> 
+				 <br /><br />
+			</div>  
+			
+			<div id="uncertainbox">
+			 <label for="Uncertainty-Result">Uncertainty Result</label>
+			 <select id="Uncertainty-Result" class="options">
+			 	<option id = 'uncertainselect' name = '' value = ''>Uncertainty Result</option>
+			 	<option name = 'BelowSaltElevation' value = 'e4d20b3301e443d4ae33f37a34c52408'>Below Salt Elevation</option>
+			 	<option name = 'ExistingMarsh' value = '255833dc50ec42baa76dc67d60b7c031'>Existing Marsh</option>
+			 	<option name = 'HabitatChange' value = '895c9cfa51c14bef98d1a2de908f6059'>Habitat Change</option>
+			 	<option name = 'IsBeach' value = '0090b0278b824bd5ad66e75cc023588f'>Beach</option>
+			 	<option name = 'IsCoastalMarsh' value = 'eddb5ea7986e4bedb51ef7f3754dea6c'>Coastal Marsh</option>
+			 	<option name = 'IsCoastalWetland' value = 'bc7fb62060104d3a8fb3a215d3f8030b'>Coastal Wetland</option>
+			 	<option name = 'IsFloodDevelopment' value = 'a50c307236bf4af19c771d61ba3d8400'>Flood Development</option>
+			 	<option name = 'LandToOpenWater' value = '904230ad03b2455aa804b0b171635724'>Land To Open Water</option>
+			 	<option name = 'NewCoastalMarsh' value = '16ff08f4eee14235a6077ef1fd6bca54'>New Coastal Marsh</option>
+			 	<option name = 'NewFloodDev' value = '81a296fe691c43d89ce9559a13ad28e5'>New Flood Dev</option></select
+			   ><br /><br />
+			 </div>   
+			   
+			  <label for="Point-Infrastructures">Point Infrastructures <!-- <button type="button" id = 'add'>Add</button> --> <button type="button" id = 'label'>Show labels</button></label>
+			  </br>
+			  <div id="Point-Infrastructures">
+			  	<select id = "Point-Infrastructures-select" class="options">
+			  		<option id = 'infraselect' name = '' value = ''>Point Infrastructures</option>
+			  		<option name = 'FACILITYNA'value = 'db94437d7f1c49a59088a41215be8db3'>School</option>
+			  		<option name = 'NAME' value = 'a43269933234440eb92844bcf869de72'>Police Stations</option>
+			  		<option name = 'FACILITYNA' value = '91ce1f2fadc84b388e1106710d604e6e'>Airports</option>
+			  		<option name = 'NAME' value = '3ba337162f174888adfacfa76c08073c'>Electric_Power</option>
+			  		<option name = 'FACILITYNA' value = '5e51a68deca344eba793f65a65102238'>Fire_Stations</option>
+			  		<option name = 'FACILITYNA' value = '66de080d2b644f49bb9aa7c7197eba3e'>Medical_facilities</option>
+			  		<option name = 'NAME' value = '15451746e08742239592e23573e9080d'>NOAA Coastal Energy</option>
+			  		<option name = 'NAME' value = 'cb9628a9c437447f9d883455236b24c0'>Railroad Stations</option>
+			  		<option name = 'FACILITYNA'value = 'af29be1c18b44d62882a79319f2c1a8b'>SPDES</option>
+			  		<option name = 'NAME' value = 'fb66e223867f439ca8a4e213418ff109'>USACE_Projects</option>
+			  		<option name = ''  value = '0ccb805dd11d4d2eaf9667c36f6b26dc'>Water_Facilities</option></select
+			  	  ><br /><br />
+			  </div>
+
+			<button type="button" id = 'parkinglot'>Parking Lots</button>&nbsp &nbsp <button type="button" id = 'SVI'>SVI & Census tract</button>
+			  <br /><br />
+			  <div class="opacity">
+			  	 <label for="pluto">Pluto Data Opacity</label>
+			  	<span id="pluto">0</span><span id="pluto">%</span> <br />
+			  		0<input
+			  		  id="opacity"
+			  		  type="range"
+			  		  min="0"
+			  		  max="100"
+			  		  value="0"
+			  		  tabindex="1"
+			  		/>100%
+			  </div>
+			  <br />
+			  <button class="esri-button" id="clearSelection" type="button">
+				Clean selection
+			  </button>
+			  </br>
+     <!-- <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'trailing'">Trailing pane</div> -->
+     <!-- <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">Bottom pane</div> -->
+	</div>
+</div>
+
+
+<script type="text/plain" id="percentage-arcade">
+					return $feature.RPL_THEMES * 100;</script>
+<script src = "globalvar.js" type="text/javascript"></script>
+
+<script src = 'main.js' type="text/javascript"></script>
+
+
+
+
+
+
+</body>
+</html>
