@@ -23,11 +23,12 @@ The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.j
 
 ## What are the advantage of [Name of the tool] in helping our spsonser compared with spatial anlysis software Arcmap/QGIS/Other WebGIS application?
 
-| Feature | [Name of the tool] | Arcmap | Other WebGIS
+| Feature | [Name of the tool] | Arcmap | Other WebGIS apps |
 | :------: | :------: | :------: |:------: |
 | Difficulty of use | Easy | Hard | Easy|
 | Efficiency |★★★★★  |★  |★★|
 | Synthesized Visualization| ✔︎ | ✖︎ |✖︎|
-| Time & feature filter convenience | Easy & Quick | None | Seldom has |
+| Time & feature filter convenience | Easy & Quick | None | Seldom have |
 | Integrated Dataset|✔︎|✖︎|✖︎|
-| Dynamic Querying|✔︎|✖︎|✖︎|
+| Spatial filtering |Easy & Quick| Slow & prone to error |Seldom have |
+| Dynamic Query by drawing |✔︎|✖︎|✖︎|
