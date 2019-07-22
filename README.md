@@ -13,13 +13,17 @@ The WebGIS tools provide visualization and analysis function for various differe
 
 #### How the [name] tool is builts?
 The layout framwork of the tool is built by [dojo](https://dojotoolkit.org/) 
+
 the Map and function inside the map are built by [Arcgis javascript API](https://developers.arcgis.com/javascript/). 
+
 We use ArcGIS online portal to host all of our data, which have already been cleaned.
+
 The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.js](https://www.chartjs.org/) 
 
 
 #### What are the advantage of [Name of the tool] compared with Arcmap/QGIS/Other WebGIS application?
 | Feature | [Name of the tool] | Arcmap | Other WebGIS
 | :------: | :------: | :------: |:------: |
-| Loading time(Large Dataset) | 中等文本 | 稍微长一点的文本 |
+| Difficulty | <font color=green>Very Easy<font> | Hard | Very easy|
+| Loading time(Large Dataset) | Fast | 稍微长一点的文本 |
 | Visualization function | 短文本 | 中等文本 |
