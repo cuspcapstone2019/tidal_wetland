@@ -32,3 +32,4 @@ The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.j
 | Integrated Dataset|✔︎|✖︎|✖︎|
 | Spatial filtering |Easy & Quick| Slow & prone to error |Seldom have |
 | Dynamic Query by drawing |✔︎|✖︎|✖︎|
+| Animation |Beatiful & Smooth|Crude|Rare|
