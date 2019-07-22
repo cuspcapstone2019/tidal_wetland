@@ -146,14 +146,25 @@ var body = document.getElementById('border');
 					slider.addEventListener("change",function(){
 						
 						setSliderValue();
+						//update point infra
 						update_point_visual();
+						//update deterministic
 						map.remove(deterlayer);
 						let layerid = deterministic_layer[pointid][pointyear];
 						deterlayer= change_deter_layer(layerid)
 						console.log(pointid,pointyear)
+						
+						//update uncertainty
+						map.remove(slamm_layer)
+						let slamm_id = SLAMM[slamm_name][pointyear]
+						slamm_layer = createSLAMM(slamm_id,slamm_name)
 						if (deter_box_show){
 						
 							map.add(deterlayer);
+						}
+						
+						if (uncertain_box_show){
+							map.add()
 						}
 						
 					})
@@ -163,15 +174,17 @@ var body = document.getElementById('border');
 						convert()
 						let index = this.selectedIndex;
 						
-						let name = this.options[index].getAttribute('name');
+						slamm_name = this.options[index].getAttribute('name');
 						uncertainty_choice.innerHTML=this.options[index].innerHTML;
 						let year = '_'+sliderValue.innerHTML
-						console.log(name,year)
-						
-						let id = SLAMM[name][year]
+						console.log(slamm_name,year)
+						let id = SLAMM[slamm_name][year]
 						console.log(id)
+						if (slamm_layer){
+							map.remove(slamm_layer)
+						}
 						legend_t = name + 'Probability:';
-						slamm_layer = createSLAMM(id,name);
+						slamm_layer = createSLAMM(id,slamm_name);
 						if (uncertain_box_show){
 							map.add(slamm_layer)
 							setYear(80)
@@ -186,15 +199,19 @@ var body = document.getElementById('border');
 								d3.select(this)
 									.style('color', 'orange')
 									convert()
+									uncertain_box_show =!uncertain_box_show
 									map.add(slamm_layer)
 									setYear(80)
+									
 							}
 							else{
 								d3.select(this)
 									.style('color', 'aqua')
-									map.remove(deterlayer)
+									uncertain_box_show =!uncertain_box_show
+									map.remove(slamm_layer)
+									
 							}
-							uncertain_box_show =!uncertain_box_show
+							
 					})
 					  
 					  
@@ -478,7 +495,9 @@ var body = document.getElementById('border');
 					view.ui.add(SketchExpand, "bottom-right");
 					
 					
-					
+					/* -----------------------------
+					        Expand our Legend
+					--------------------------------*/
 					
 					var slammlegend = new Legend({
 						    view: view
@@ -492,7 +511,9 @@ var body = document.getElementById('border');
 					});
 					view.ui.add(LegendExpand, "bottom-left");
 					
-					
+						/* -----------------------------
+					        Expand our Search 
+					--------------------------------*/
 					var search = new Search({view: view});
 					
 					const searchExpand = new Expand({
@@ -503,7 +524,41 @@ var body = document.getElementById('border');
 					});
 					view.ui.add(searchExpand,"top-right");
 					
-				
+					/* -----------------------------
+				        Expand our Basemap Gallery
+				--------------------------------*/
+					var basemapGallery = new BasemapGallery({
+						view: view,
+						source: {
+						  portal: {
+							url: "https://www.arcgis.com",
+							useVectorBasemaps: false  // Load vector tile basemaps
+						  }
+						},
+						iconClass:'esri-icon-maps'
+					  });
+					const basemapExpand = new Expand({
+						  expandIconClass: "esri-icon-maps",
+						  expandTooltip: "How to use this sample",
+						  view: view,
+						  content: basemapGallery
+						});
+						view.ui.add(basemapExpand,"top-right")
+					/* -----------------------------
+					       Return to orginal basemap
+					--------------------------------*/
+					d3.select('#Original_Basemap')
+						.on('click',function(){
+							map.basemap = {
+								portalItem: {
+									id: "4f2e99ba65e34bb8af49733d9778fb8e"
+									}
+							};
+						})
+					
+					
+					
+					
 					
 /* -----------------------------
       Load Pluto Data 
@@ -641,7 +696,16 @@ var body = document.getElementById('border');
 					
 					  featureLayerView = layerView;
 					});
-					
+/* -----------------------------
+       Pluto Opacity 
+--------------------------------*/	
+					opslider.addEventListener('change',function(){
+						           opnum.innerHTML=opslider.value
+											 plutolayer.opacity = opslider.value/100
+					})
+
+
+
 /* -----------------------------
       Set deterministic Layer view
 --------------------------------*/	
@@ -1465,8 +1529,45 @@ var body = document.getElementById('border');
 					createMaterialChart();
 					createpolarChart()
 					createvalueChart();		
+			
+			
+/* -----------------------------
+     Fly to Function
+--------------------------------*/	
+					var parking;
 					
-					
+					d3.select('#parkinglot')
+								.on('click',function(){
+									if (showsvi){
+										d3.select(this)
+											.style('color','orange')
+										convert()
+										parking = create_parking_lot();
+										map.add(parking);
+										// let sketchLayer = new GraphicsLayer();
+										// let bufferLayer = new GraphicsLayer();
+										// view.map.addMany([bufferLayer, sketchLayer]);
+										
+									}	
+									else{
+										d3.select(this).style('color','aqua')
+										map.remove(parking);
+									}
+									showsvi = !showsvi;
+								})
+								
+								
+					function create_parking_lot(){
+								let newlayer = new FeatureLayer({
+									portalItem: {
+									  id: 'ede4b1edc5024d37978623f6b9611d88'
+									},
+									title: 'parking',
+									outFields: ["shape_area"]
+									
+								})
+								return newlayer
+					}
 
 
 
@@ -1618,6 +1719,7 @@ var body = document.getElementById('border');
 							SLR_choice.innerHTML ='';
 							pointid = null;
 							deterlayer = null;
+							slamm_layer=null;
 							sketchLayer = new GraphicsLayer();
 							bufferLayer = new GraphicsLayer();
 							view.map.addMany([bufferLayer, sketchLayer]);
@@ -1636,18 +1738,6 @@ var body = document.getElementById('border');
 		var showparkinglot = true;
 		var showsvi = true;
 		
-		d3.select('#parkinglot')
-			.on('click',function(){
-				if (showsvi){
-					d3.select(this)
-						.style('color','orange')
-					convert()
-				}	
-				else{
-					d3.select(this).style('color','aqua')
-				}
-				showsvi = !showsvi;
-			})
 		
 		d3.select('#SVI')
 			.on('click',function(){
