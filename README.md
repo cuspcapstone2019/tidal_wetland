@@ -21,9 +21,9 @@ We use ArcGIS online portal to host all of our data, which have already been cle
 The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.js](https://www.chartjs.org/) 
 
 
-## What are the advantage of [Name of the tool] compared with Arcmap/QGIS/Other WebGIS application?
+## What are the advantage of [Name of the tool] in helping our spsonser compared with spatial anlysis software †Arcmap/QGIS/Other WebGIS application?
 | Feature | [Name of the tool] | Arcmap | Other WebGIS
 | :------: | :------: | :------: |:------: |
-| Difficulty | <font color="#0099ff">Very Easy</font> | Hard | Very easy|
+| Difficulty of use | Easy☆☆☆ | Hard | Easy|
 | Loading time(Large Dataset) | Fast | 稍微长一点的文本 |
-| Visualization function | 短文本 | 中等文本 |
+| Visualization function | 短文本 | 中等文本 | |
