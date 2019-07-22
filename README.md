@@ -24,6 +24,6 @@ The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.j
 #### What are the advantage of [Name of the tool] compared with Arcmap/QGIS/Other WebGIS application?
 | Feature | [Name of the tool] | Arcmap | Other WebGIS
 | :------: | :------: | :------: |:------: |
-| Difficulty | <font color=#0099ff>Very Easy<font> | Hard | Very easy|
+| Difficulty | <font color=#0099ff>Very Easy</font> | Hard | Very easy|
 | Loading time(Large Dataset) | Fast | 稍微长一点的文本 |
 | Visualization function | 短文本 | 中等文本 |
