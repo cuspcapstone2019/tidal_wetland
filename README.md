@@ -26,6 +26,7 @@ The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.j
 | Feature | [Name of the tool] | Arcmap | Other WebGIS
 | :------: | :------: | :------: |:------: |
 | Difficulty of use | Easy | Hard | Easy|
-| Efficiency |★★★★★  |★  |★★
-| Synthesized Visualization with SLAMM & other data | ✔︎ | ✖︎ |✖︎|
-| Complete Integrated Dataset|✔︎|✖︎|✖︎|
+| Efficiency |★★★★★  |★  |★★|
+| Synthesized Visualization| ✔︎ | ✖︎ |✖︎|
+| Integrated Dataset|✔︎|✖︎|✖︎|
+| Dynamic Querying|✔︎|✖︎|✖︎|
