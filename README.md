@@ -28,6 +28,6 @@ The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.j
 | Difficulty of use | Easy | Hard | Easy|
 | Efficiency |★★★★★  |★  |★★|
 | Synthesized Visualization| ✔︎ | ✖︎ |✖︎|
-| Time & feature filter convenience | Easy & Quick | None | Seldom |
+| Time & feature filter convenience | Easy & Quick | None | Seldom has |
 | Integrated Dataset|✔︎|✖︎|✖︎|
 | Dynamic Querying|✔︎|✖︎|✖︎|
