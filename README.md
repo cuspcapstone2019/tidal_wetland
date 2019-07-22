@@ -14,7 +14,7 @@ The WebGIS tools provide visualization and analysis function for various differe
 ## How the [name] tool is builts?
 The layout framwork of the tool is built by using [dojo](https://dojotoolkit.org/) 
 
-the Map and function inside the map are built by using [Arcgis javascript API](https://developers.arcgis.com/javascript/). 
+the Map and function inside the map are built by using [Arcgis Javascript API](https://developers.arcgis.com/javascript/). 
 
 We used ArcGIS online portal to host all of our data, which have already been cleaned.
 
