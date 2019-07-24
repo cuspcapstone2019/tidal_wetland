@@ -26,11 +26,11 @@ The tool website is generated using github page.
 
 | Feature | NYC Coastal Flooding Planner | Arcmap | Other WebGIS apps |
 | :------: | :------: | :------: |:------: |
-| Difficulty of use | Easy | Hard | Easy|
+| Difficulty | Easy | Hard | Easy|
 | Efficiency |★★★★★  |★  |★★|
 | Synthesized Visualization| ✔︎ | ✖︎ |✖︎|
 | Time & feature filter convenience | Easy & Quick | None | Seldom have |
 | Integrated Dataset|✔︎|✖︎|✖︎|
 | Spatial filtering |Easy & Quick| Slow & prone to error |Seldom have |
 | Dynamic Query by drawing |✔︎|✖︎|✖︎|
-| Animation |Beatiful & Smooth|Crude|Rare|
+| Animation |Beautiful & Smooth|Crude|Rare|
