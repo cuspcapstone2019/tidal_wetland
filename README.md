@@ -24,7 +24,7 @@ The tool website is generated using github page.
 
 ## What are the advantage of [NYC Coastal Flooding Planner] in helping our spsonser compared with spatial anlysis software Arcmap/QGIS/Other WebGIS application?
 
-| Feature | [Name of the tool] | Arcmap | Other WebGIS apps |
+| Feature | [NYC Coastal Flooding Planner] | Arcmap | Other WebGIS apps |
 | :------: | :------: | :------: |:------: |
 | Difficulty of use | Easy | Hard | Easy|
 | Efficiency |★★★★★  |★  |★★|
