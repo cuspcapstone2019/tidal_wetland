@@ -8,7 +8,7 @@
 
 
 
-## What is  [NYC Coastal Flooding Planner]
+## What is NYC Coastal Flooding Planner?
 The WebGIS tools provide visualization and analysis function for various different sources of data related to coastal marsh, which includes SLAMM model results, Social vulnerability index, pluto landuse data and census tract demorgraphic data. It integrated large amount of pre-processed data and quick function such as query data by drawing, dynamic data-driven dashboards, time and probability sliders and animation. 
 
 ## How the NYC Coastal Flooding Planner tool is builts?
