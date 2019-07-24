@@ -329,7 +329,7 @@ var deterministic_layer ={
 		_2100:'4d9cfa88d34d47088100c8d8a466f0c1'
 	},
 	medium_inund:{
-		_2008:'f2a7b6aae21c47af81f5caa006647a82'
+		_2008:'f2a7b6aae21c47af81f5caa006647a82',
 		_2025:'1dab01ccfd4e4f878fdb7796cd0e134d',
 		_2040:'2b2ffe903e1b424ab00e90844e58b71b',
 		_2055:'a91b8215f2de49f680afe8779753bad1',
