@@ -8,10 +8,10 @@
 
 
 
-## What is  [name of the tool]
+## What is  [NYC Coastal Flooding Planner]
 The WebGIS tools provide visualization and analysis function for various different sources of data related to coastal marsh, which includes SLAMM model results, Social vulnerability index, pluto landuse data and census tract demorgraphic data. It integrated large amount of pre-processed data and quick function such as query data by drawing, dynamic data-driven dashboards, time and probability sliders and animation. 
 
-## How the [name] tool is builts?
+## How the [NYC Coastal Flooding Planner] tool is builts?
 The layout framwork of the tool is built by using [dojo](https://dojotoolkit.org/) 
 
 the Map and function inside the map are built by using [Arcgis Javascript API](https://developers.arcgis.com/javascript/). 
@@ -22,7 +22,7 @@ The charts in the dashboard are built by [d3.js](https://d3js.org/) and [chart.j
 
 The tool website is generated using github page. 
 
-## What are the advantage of [Name of the tool] in helping our spsonser compared with spatial anlysis software Arcmap/QGIS/Other WebGIS application?
+## What are the advantage of [NYC Coastal Flooding Planner] in helping our spsonser compared with spatial anlysis software Arcmap/QGIS/Other WebGIS application?
 
 | Feature | [Name of the tool] | Arcmap | Other WebGIS apps |
 | :------: | :------: | :------: |:------: |
