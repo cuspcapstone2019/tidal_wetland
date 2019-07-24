@@ -28,7 +28,7 @@
 <body class="claro">
     <div data-dojo-type="dijit/layout/BorderContainer" style="width: 100%; height: 100%" id ='border'>
 	 
-    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="minSize:1, region:'leading', splitter : 'true'" id = 'left' class = 'flexcroll'>Leading pane
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'leading', splitter : 'true'" id = 'left' class = 'flexcroll'>Leading pane
 		<div id='panel'>
 			<div id="note">
 				
@@ -53,23 +53,30 @@
 					  <div>
 						<canvas id="landuse-chart" height="250" width="400" />
 					  </div>
+					  </br>
 					  <div>
 					    <canvas id="material-chart" width="250" height="300" />
 						
 					  </div>
+					  </br>
 					  <div>
 					    <canvas id="value-chart" width="400" height="250" />
 					  </div>
+					  </br>
 					  <div>
 						
 					  	<canvas id="deter-chart" width="250" height="400" />
 					  </div>
+					  </br>
 					  <div>
+						  <h3><span id="population_select"></span> 	Population</h3> 
 					  	<canvas id="language-chart" height="250" width="400" />
 					  </div>
+					  </br>
 					  <div>
 					  	<canvas id="income-chart" height="250" width="400" />
 					  </div>
+					  </br>
 					  <div>
 						  <span id="data_uncertain">
 						  	
@@ -79,23 +86,23 @@
 						  </span>
 					  	<canvas id="uncertain-chart" height="400" width="250" />
 					  </div>
-					  <h3 style='color:White'>World Cloud of OwnerName by Share area</h3>
+					  </br>
+					  <h3 id= 'word-cloud' style='color:White'>Word Cloud of OwnerName by Area</h3>
 					  <div id = 'd3-chart' width='500' height = '400'>
 						<svg></svg>
 					  </div>
 					  </br>
 					  <div id = 'Karan'>
-						
-					  	
+						<h3>SVI & SLAMM affected Area Correlation Matrix</h3>
+					  	<p>Percentile ranking: 0.9 means it is more vulnerable than 90% of census tract. See <b><a style='color:aqua' href="https://svi.cdc.gov/Documents/Data/2016_SVI_Data/SVI2016Documentation.pdf">Document </a></b>here</p>
+					  	<p>RPL_THEMES : Overall vulnerability percentile ranking</p>
+					  	<p>RPL_THEME3 : Percentile ranking for Minority Status/Language </p>
+					  	<p>RPL_THEME1: Percentile ranking for Socioeconomic vulnerability</p>
+					  	<p>Sx_yyyy : The SLAMM deterministic result Marsh affected area in [Sx] sea level Rise.</p>
+						<p style='color:aqua'>Example: S1_2040 means deterministic result affected area under low sea level rise in 2040</p>
 							<svg id = 'matrix'></svg>
-							
-						<p>Percentile ranking: 0.9 means it is more vulnerable than 90% of census tract</p>
-						<p>RPL_THEMES : Overall vulnerability percentile ranking</p>
-						<p>RPL_THEME3 : Percentile ranking for Minority Status/Language </p>
-						<p>RPL_THEME1: Percentile ranking for Socioeconomic vulnerability</p>
-						<p>Sx_2xxx</p>
 						<span>
-							Adjust the Bandwidth to see Kernel Density
+							Adjust the Bandwidth to see Kernel Density.The light part of the kernel density represent high density of point. You can identify cluster easily.
 						</span>
 						<input
 							id="bandwidthslider"
@@ -105,7 +112,12 @@
 							step="1"
 							value="6"
 								/>
+						</br>
+						</br>
 								
+					  </div>
+					  <div >
+					  	
 					  </div>
 					  
 					  
@@ -115,7 +127,108 @@
 				<div id="aboutpage">
 					
 				
-					<h3> This time I won't write any update and improve. Try to discover new things~</h3>
+					<h3 style="margin-left:20px; font-size:130%"> NYC Coastal Flooding Planner</h3>
+					<h4 id= 'a1' class ='controler'>Purpose </h4>
+					<p id = 'purpose'>The destruction wreaked by Hurricane Sandy and global sea level rise shed light on the importance of developing infrastructure that will reduce flooding damage and counter tidal erosion in New York City. 
+					  This tool is meant to aid city employees in pinpointing the conversion of lots of land into salt marshes, which are an effective means of reducing tidal erosion, while also displaying its associated costs and benefits. It is also meant to inform citizens on the flood risk levels in New York City, which could impact their daily lives.
+					</p>
+					<h4 id ='a2' class ='controler'>What is NYC Coastal Flooding Planner</h4>
+					<p id ='whatis'>NYC Coastal Flooding Planner is a WebGIS application provide visualization and analysis function for various different sources of data related to coastal marsh, which includes SLAMM model results, Social vulnerability index, pluto landuse data and census tract demorgraphic data. It integrated large amount of pre-processed data and quick function such as query data by drawing, dynamic data-driven dashboards, time and probability sliders and animation.</p>
+					<h4 id ='a3' class ='controler'>How the Flooding Planner was built</h4>
+					<p id = 'howbuilt'>The layout framwork of the tool is built by using dojo the Map and function inside the map are built by using Arcgis Javascript API.
+						We used ArcGIS online portal to host all of our data, which have already been cleaned.
+						The charts in the dashboard are built by d3.js and chart.js. The tool website is generated using github page.</p>
+					<h4 id ='a4' class ='controler'>How to Use</h4>
+					<ul class = 'sublist'>
+						<li id ='b1' class ='controler'>
+							Supplement Function
+						</li>
+					</ul>
+					<div id="Supplement">
+						<p><img src="fly.png" > button will show a address list. Click on the address will fly you to the pre-defined area on the map. These areas are selected based on the new coastal marsh cluster areas</p>
+						<p><img src="basemap.png" > button will show a gallery of basemap for you to choose. Choosing one of them will change the basemap. If you want to go back, click <img src="fly.png" > and select <span style = "color:aqua">	
+						[Original Basemap]</span></p>
+						<p><img src="function.png" >button contorl the map showing. It will popup a map layer tool box once you click it</p>
+					</div>
+					<ul class = 'sublist'>
+						<li id ='b2' class ='controler'>
+							Layer Selction
+						</li>
+					</ul>
+				
+					<div id="Main">
+						<div style='border: 1px solid white'>
+							
+						
+						<p  style='font-size: 75%' "margin-left: 5px;">&nbsp;&nbsp;To understand how to use this function, you need to understand what data we are using.Click to see the <a style='color:yellow' href="https://cuspcapstone2019.github.io/Data_Structure/">Dataset structure</a> in this project</p>
+						<p  style='font-size: 75%' "margin-left: 5px;">&nbsp;&nbsp;You might also want to see What is <a style='color:yellow' href="http://warrenpinnacle.com/prof/SLAMM/">SLAMM</a> if you don't understand what <span style = "color:aqua">[deterministic]</span> and <span style = "color:aqua">[Uncertainty]</span> mean</p>
+						</div>
+						<p>Click button in the tool box, if the button becomes orange, it means certain map is chosen to be shown.</p>
+						
+						
+						<p>Such as <span style = "color:orange">[deterministic]</span> means certain deterministic layer will show. Why it does not show anything? Don't worry, to make it shows layer, you have to specify the <span style = "color:aqua">type
+							
+						</span>and <span style = "color:aqua">time </span> </p>
+						<p>The certain map layer is identified by the app according to your selection of <span style = "color:aqua">type </span>, and whether to show the map</p>
+						<div style='border: 1px solid white'>
+							<p style='font-size: 75%' "margin-left: 5px;">e.g.:<span style = 'color:orange'>[deterministic]</span> + [Low] + [2025] =<span style='color:aqua'>[deterministic result at low sea level rise rate in 2025] </span></p>
+							<p style='font-size: 75%' "margin-left: 5px;">e.g.:<span style = 'color:orange'>[Uncertainty]</span> + [New Coastal Marsh] + [2040] =<span style='color:aqua'>[Uncertainty result(New Coastal Marsh) in 2040] </span></p>
+							<p style='font-size: 75%' "margin-left: 5px;">e.g.:[Medium] + [School] + [2085] =<span style='color:aqua'>[The inundation result of school in NYC at medium SLR rate in 2085] </span></p>
+						</div>
+						<p>The vertical slider on the right hand side is for contorling the probability color visual display of Uncertainty map.Any polygon above the slider current value will be shown as <span style = "color:aqua">
+							
+						auqa</span> Any polygon below 50 points of the slider current value will be invisible </p>
+						<p><img src="Play.png" > Use Animation button on infrastructures and see the change of inundation status arcoss year</p>
+						<p>Get confused with the color? click <img src="Legend.png" > to see the Legend of all layers you add.</p>
+						<p>Click <span style = "color:orange">[Parking lot]</span> and <span style = "color:orange">[SVI & Census Tract]</span> to show the layer right away!</p>
+						
+						<p>You can use the <span style = "color:orange">[Pluto Opacity slider]</span> to show the underlying pluto layer. Click back to <img src="Legend.png"> to see the color change with the opacity</p>
+						<p><span style = "color:aqua">[Clean Selection]</span> sets everything back to default. <span style = "color:red">Warning:</span> if you find this panel disappear, click <span style = "color:aqua">[Clean Selection]</span></p>
+					</div>
+					
+					<ul class = 'sublist'>
+						<li id ='b3' class ='controler'>
+							Query & Filter By Drawing
+						</li>
+					</ul>
+					<div id="drawing">
+						<p><img src="draw.png" > button open a drawing tool box for you to interact with the data with the geometrical design you draw. Choose one of <img src="Geometric%20tool.png" > to draw on the map. Double click to end the drawing. What happen? The things you draw generate charts on this panel automactically!(I will disappear) Glad you enable me to show up again by clicking <span style = "color:aqua">[Clean Selection]</span> </p>
+					</div>
+					<ul class = 'sublist'>
+						<li id ='b4' class ='controler'>
+							Dashboard Visualization
+						</li>
+					</ul>
+					<div id="dashboard">
+						<p>The charts visualization is based on the data query by the app according to the <span style = "color:orange">[Spatial Relationship you select]</span> Try different choices and the buffer slider to see what happen</p>
+						
+						<p>You might notice that some charts do not show. That is because you are only querying the underlying layer now. [Map pluto] and [SVI Census Tract] are two underlying layers you can query at any time </p>
+						<p>Try to add <span style = "color:orange">[deterministic]</span> and <span style = "color:orange">[Ucertainty]</span> and draw an geometry on it to see the charts' change </p>
+					</div>
+					<ul class = 'sublist'>
+						<li id ='b5' class ='controler'>
+							Technique
+						</li>
+					</ul>
+					<div id="technique">
+						
+							<p>1.Reload the webpage if the app die</p>
+							<p>2.Display one layer from (deterministic, uncertainty) each time will give you the best result. Display them together will slower down the app</p>
+							<p>3.Animation is set to have 4s interval if you show deterministic result on the map. 1s if point infrastructure is display only</p>
+							<p>4.The chart generation speed is according to how large area you draw. Basically, The larger the area you draw, the slower the charts generate. Therefore, don't draw the whole city...</p>
+							<p>5.The chart generation speed is also affected by internet speed. The faster the internet, the faster it generate</p>
+							<p>6.If you draw a ploygon but some charts do not show up. It might because you did not choose to display deterministic or uncertainty and it might because there is not data to be query in the area you selected. </p>
+							<p>7.Zoom in to a smaller area will make deterministic and uncertainty result show up faster</p>
+						
+					</div>
+					
+					<h4 id= 'a5' class ='controler'>Who we are</h4>
+					<p id ='whowe'>This tool was developed by Andrew Hill, Chang Du, Haoming Yang, Sean Andrew Chen, and Yushi Chen for our NYU-Center for Urban Science and Progress Capstone Project titled “Tidal Wetland Conservation Options for Long-Term Land Use Planning for Sea Level Rise” on behalf of the New York City Department of Parks and Recreation.
+					</p>
+					<h4 id= 'a6' class ='controler'>Acknowledgements</h4>
+					<p id ='acknow'>We could not have done our project without the guidance and help of our mentor, Dr. Navid Jafari of Louisiana State University. We also would like to thank the employees of our sponsors: Christopher Haight, Rebecca Swadek, and Bram Gunther from the New York City Department of Parks and Recreation and Terri Matthews and Brenna Hemmings from Town+Gown
+					</p>
+					
 					<!-- <ul>
 					<li>New Layout!! More Consice!! You can adjust the panel and map size dynamically!</li>
 					</br>
@@ -287,34 +400,24 @@
 				<li id = "Origin" class = 'panel-result'>Origin</li>
 				<li id ="Original_Basemap"class = 'panel-result'>Original Basemap</li>
 				<li id = "BroadChannel" class = 'panel-result'>Broad Channel in Queens</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
-				<li class = 'panel-result'>Loading&hellip;</li>
+				<li id = 'Jamaica Bay'class = 'panel-result'>Jamaica Bay</li>
+				<li id = 'Rockaway Point'class = 'panel-result'>Rockaway Point</li>
+				<li id ='Coney Island' class = 'panel-result'>Coney Island</li>
+				<li id = 'BloomField'class = 'panel-result'>Staten Island: BloomField</li>
+				<li id = 'Travis' class = 'panel-result'>Staten Island:Travis</li>
+				<li id = 'Great Kills' class = 'panel-result'>Staten Island:Great Kills Harbor</li>
+				<li id = 'Corona' class = 'panel-result'>Corona</li>
+				<li id = 'Red Hook' class = 'panel-result'>Red Hook</li>
+				<li id = 'Lower Manhattan' class = 'panel-result'>Lower Manhattan</li>
+				<li id = '11th Ave'class = 'panel-result'> West Manhattan: 11th Ave</li>
+				<li id = '12th Ave'class = 'panel-result'>West Manhattan: 12th Ave</li>
+				<li id = 'Riverside Park' class = 'panel-result'>Riverside Park</li>
+				<li id = 'Harlem River side' class = 'panel-result'>Harlem River side</li>
+				<li id = 'Bronx Kill'class = 'panel-result'>Bronx Kill</li>
+				<li id = 'Ralph Park' class = 'panel-result'>Ralph Park</li>
+				<li id = 'Whitey Ford Field' class = 'panel-result'>Whitey Ford Field</li>
+				<li id = 'Queensbridge Parks'class = 'panel-result'>Queensbridge Parks</li>
+				<li id = 'Maspeth Creek' class = 'panel-result'>Maspeth Creek</li>
 			</ul>
 			</div>
 		</div>
@@ -403,7 +506,7 @@
      <!-- <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">Bottom pane</div> -->
 	</div>
 </div>
-
+<script src = 'control_introduction.js' type="text/javascript"></script>
 
 <script type="text/plain" id="percentage-arcade">
 					return $feature.RPL_THEMES * 100;</script>

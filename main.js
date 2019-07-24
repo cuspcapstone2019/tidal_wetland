@@ -663,7 +663,7 @@ var body = document.getElementById('border');
 /* -----------------------------
              MapView 
 --------------------------------*/				
-					var view = new MapView({
+					  view = new MapView({
 					  container: "viewDiv",
 					  map: map,
 					  center: [-73.967569, 40.727724],
@@ -1119,7 +1119,8 @@ var body = document.getElementById('border');
 						sviLayerView.filter = null;
 					  clearCharts();
 					  resultDiv.style.display = "none";
-					  aboutpage.style.display = 'block';
+					  // aboutpage.style.display = 'block';
+						
 					}
 				
 					
@@ -1218,8 +1219,7 @@ var body = document.getElementById('border');
 							deterqueryStatistics(),
 							sviqueryfeatures(),
 							querySviStatistics(),
-							// queryUncertainStatistics(),
-						// updateSceneLayer()
+							queryUncertainStatistics()
 					  ]);
 					});
 					
@@ -1831,7 +1831,7 @@ var body = document.getElementById('border');
 								let second = allStats.below25000 + allStats.below30000
 								let third = allStats.below35000 + allStats.below40000
 								let forth = allStats.below45000 + allStats.below50000
-								
+								document.getElementById('population_select').innerHTML = allStats.population
 						  updateChart(languageChart, [
 						    100*allStats.OnlyEnglish/allStats.population,
 							  100*allStats.Spanish/allStats.population,
@@ -1862,6 +1862,7 @@ var body = document.getElementById('border');
 						  })
 						}
 					function queryUncertainStatistics(){
+						if (uncertain_box_show){
 						const Definitions = [
 						    {
 						      onStatisticField:
@@ -1910,10 +1911,10 @@ var body = document.getElementById('border');
 						 
 						  return slammLayerView.queryFeatures(uncertain_query).then(function(result) {
 									console.log(result)
-									// uncertain_word.innerHTML = 'Selected Uncertain Prediction Area : '
+									uncertain_word.innerHTML = 'Selected Uncertain Prediction Area(Sq Meter) : '
 									 
 						    const allStats = result.features[0].attributes;
-								// uncertain_area.innerHTML =parseInt(allStats.TOTALarea)+'Sq m'
+								uncertain_area.innerHTML =parseInt(allStats.TOTALarea)
 						    updateChart(uncertainChart, [
 						      allStats.below_30,
 							    allStats.below_50,
@@ -1923,6 +1924,7 @@ var body = document.getElementById('border');
 						    ]);
 							
 						  })
+							}
 						}
 					
 					function updatecontour(data){
@@ -2054,7 +2056,7 @@ var body = document.getElementById('border');
 					      },
 					      title: {
 					        display: true,
-					        text: "Assessed Lot Value(m)"
+					        text: "Assessed Lot Value(Million)"
 					      },
 					      scales: {
 					        xAxes: [
@@ -2345,9 +2347,139 @@ var body = document.getElementById('border');
 									zoom: 12
 								},opts)
 								break;
-							case "zhanshi" :
-								$("#zhanshi").addClass("active").siblings().removeClass("active")
+							case "Jamaica Bay" :
+								view.goTo({
+									center: [-73.86108306854115, 40.60465292847868],
+									zoom: 11.304432741906734
+								},opts)
 								break;
+								case "Rockaway Point" :
+									view.goTo({
+										center: [-73.92525209462842, 40.559783364596385],
+										zoom: 13.092666237851887
+									},opts)
+									break;
+								case "Rockaway Point" :
+									view.goTo({
+										center: [-73.98392406410518, 40.58040527435688],
+										zoom: 13.092666237851887
+									},opts)
+									break;
+								case "Coney Island" :
+									view.goTo({
+										center: [-73.98392406410518, 40.58040527435688],
+										zoom: 13.092666237851887
+									},opts)
+									break;
+								case "BloomField" :
+									view.goTo({
+										center: [-74.19152539106409, 40.621039581089356],
+										zoom: 13.498493657977011
+									},opts)
+									break;
+								case "Travis" :
+									view.goTo({
+										center: [-74.1966957018178, 40.59517656012008],
+										zoom: 14.217397456058862
+									},opts)
+									break;
+								case "Great Kills Harbor" :
+									view.goTo({
+										center: [-74.13922643577088, 40.5447968511486],
+										zoom: 13.22714711509017
+									},opts)
+									break;
+								case "Great Kills" :
+									view.goTo({
+										center: [-74.13922643577088, 40.5447968511486],
+										zoom: 13.22714711509017
+									},opts)
+									break;
+								case "Corona" :
+									view.goTo({
+										center: [-73.85140188912324, 40.74405105044286],
+										zoom: 13.179193171987407
+									},opts)
+									break;
+								case "Red Hook" :
+									view.goTo({
+										center: [-74.01556852190085, 40.66874220176081],
+										zoom: 13.845540375062003
+									},opts)
+									break;
+								case "Lower Manhattan" :
+									view.goTo({
+										center: [-74.01190240259189, 40.704965248331895],
+										zoom: 14.862866097759882
+									},opts)
+									break;
+								case "Yard" :
+									view.goTo({
+										center: [-73.97995547241248, 40.703956750722654],
+										zoom: 14.862866097759882
+									},opts)
+									break;	
+								case "11th Ave" :
+									view.goTo({
+										center: [-74.01243129942, 40.743741653197006],
+										zoom: 15.562144346177003
+									},opts)
+									break;	
+								case "12th Ave" :
+									view.goTo({
+										center: [-74.00450992693187, 40.76539446391096],
+										zoom: 14.35834593969665
+									},opts)
+									break;	
+								
+								case "Riverside Park" :
+									view.goTo({
+										center: [-73.9776342863578, 40.803921021594434],
+										zoom: 15.215072757900302
+									},opts)
+									break;	
+								case "Harlem River side" :
+									view.goTo({
+										center: [-73.93143236689323, 40.84128503928726],
+										zoom: 15.825623963329187
+									},opts)
+									break;	
+								case "Bronx Kill" :
+									view.goTo({
+										center: [-73.92334074775617, 40.7998950679428],
+										zoom: 15.510755390013237
+									},opts)
+									break;	
+								case "Ralph Park" :
+									view.goTo({
+										center: [-73.91847994637851, 40.785033680625695],
+										zoom: 15.99137940895618
+									},opts)
+									break;	
+								case "Whitey Ford Field" :
+									view.goTo({
+										center: [-73.9368058015718, 40.776443533820085],
+										zoom: 15.7884932861872
+									},opts)
+									break;	
+								case "Rainey Park" :
+									view.goTo({
+										center: [-73.943347562, 40.76610094809332],
+										zoom: 15.333588525956511
+									},opts)
+									break;	
+								case "Queensbridge Parks" :
+									view.goTo({
+										center: [-73.95691074571002, 40.7507796400353],
+										zoom: 15.333588525956511
+									},opts)
+									break;	
+								case "Maspeth Creek" :
+									view.goTo({
+										center: [-73.92334464191508, 40.72373883366257],
+										zoom: 17.200628380573608
+									},opts)
+									break;	
 								}
 						});
 			

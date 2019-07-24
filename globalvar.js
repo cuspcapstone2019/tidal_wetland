@@ -172,7 +172,7 @@ const TidalFreshMarsh = {
 	
 const RegFloodMarsh = {
 	  type: "simple-fill", // autocasts as new SimpleLineSymbol()
-	  color: "rgb(0, 253, 255)"
+	  color: "rgb(255, 139, 137)"
 	};
 const othertype = {
 	  type: "simple-fill", // autocasts as new SimpleLineSymbol()
