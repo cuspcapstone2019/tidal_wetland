@@ -209,7 +209,7 @@ var body = document.getElementById('border');
 						if (slamm_layer){
 							map.remove(slamm_layer)
 						}
-						legend_t = slamm_name + 'Probability:';
+						legend_t = slamm_name + ' Probability:';
 						slamm_layer = createSLAMM(id,slamm_name);
 						if (uncertain_box_show){
 							map.add(slamm_layer)
@@ -572,6 +572,7 @@ var body = document.getElementById('border');
 			svi = new FeatureLayer({
 								portalItem:{id: "088a013b3a984590b84f9c3a1c6cb692"},
 								definitionExpression: "RPL_THEMES > 0",
+								title:"Social Vulnerability Index",
 								outFields: ["*"],
 								popupTemplate:null
 								
@@ -840,7 +841,7 @@ var body = document.getElementById('border');
 					      portalItem: {
 					        id: 'b616c9b011004d5e806dcd2659ba8eef'
 					      },
-					      title: 'pluto',
+					      title: ' ',
 						  opacity:0,
 						  outFields: ["OwnerType","OwnerName","ComArea","LandUse","LotArea","AssessTot"]
 					    });
@@ -855,7 +856,7 @@ var body = document.getElementById('border');
 							basemap: map.basemap,
 							field: "LandUse",
 							legendOptions: {
-							  title: "LandUse"
+							  title: "Land-Use"
 							}
 							// UniqueValueInfo:[{
 							// 	value :'01',
