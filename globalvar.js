@@ -478,17 +478,17 @@ const point_infra_inundation ={
 const inund30 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
 	  color: "rgb(84, 254, 255)",
-	  size:10,
+	  size:12,
 	};
 const inund60 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
 	  color: "rgb(102, 178, 255)",
-	  size:8,
+	  size:10,
 	};
 const inund90 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
 	  color: "rgb(150, 150, 255)",
-	  size:6,
+	  size:8,
 	};
 const inund120 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
