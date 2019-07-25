@@ -136,26 +136,23 @@
 					  This tool is meant to aid city employees in pinpointing the conversion of lots of land into salt marshes, which are an effective means of reducing tidal erosion, while also displaying its associated costs and benefits. It is also meant to inform citizens on the flood risk levels in New York City, which could impact their daily lives.
 					</p>
 					<h4 id ='a2' class ='controler'>What is NYC Coastal Flooding Planner</h4>
-					<p id ='whatis'>NYC Coastal Flooding Planner is a WebGIS application provide visualization and analysis function for various different sources of data related to coastal marsh, which includes SLAMM model results, Social vulnerability index, pluto landuse data and census tract demorgraphic data. It integrated large amount of pre-processed data and quick function such as query data by drawing, dynamic data-driven dashboards, time and probability sliders and animation.</p>
-					<h4 id ='a3' class ='controler'>How the Flooding Planner was built</h4>
-					<p id = 'howbuilt'>The layout framwork of the tool is built by using dojo the Map and function inside the map are built by using Arcgis Javascript API.
-						We used ArcGIS online portal to host all of our data, which have already been cleaned.
-						The charts in the dashboard are built by d3.js and chart.js. The tool website is generated using github page.</p>
+					<p id ='whatis'>NYC Coastal Flooding Planner is a WebGIS application that provides visualization and analysis functionality for coastal marsh data, which includes SLAMM model results, a Social Vulnerability Index, PLUTO land-use data and census tract-level demorgraphic data. </p>
+					
 					<h4 id ='a4' class ='controler'>How to Use</h4>
 					<ul class = 'sublist'>
 						<li id ='b1' class ='controler'>
-							Supplement Function
+							Supplementary Functions
 						</li>
 					</ul>
 					<div id="Supplement">
-						<p><img src="fly.png" > button will show a address list. Click on the address will fly you to the pre-defined area on the map. These areas are selected based on the new coastal marsh cluster areas</p>
-						<p><img src="basemap.png" > button will show a gallery of basemap for you to choose. Choosing one of them will change the basemap. If you want to go back, click <img src="fly.png" > and select <span style = "color:aqua">	
+						<p><img src="fly.png" > button will show an address list. Clicking on the address will fly you to the pre-defined area on the map. These areas are selected based on the coastal marsh cluster areas</p>
+						<p><img src="basemap.png" > button will show a gallery of basemaps. If you want to go back, click <img src="fly.png" > and select <span style = "color:aqua">	
 						[Original Basemap]</span></p>
-						<p><img src="function.png" >button contorl the map showing. It will popup a map layer tool box once you click it</p>
+						<p><img src="function.png" >button control the map showing. It will popup a map layer tool box once you click it</p>
 					</div>
 					<ul class = 'sublist'>
 						<li id ='b2' class ='controler'>
-							Layer Selction
+							Layer Selection
 						</li>
 					</ul>
 				
@@ -163,30 +160,39 @@
 						<div style='border: 1px solid white'>
 							
 						
-						<p  style='font-size: 75%' "margin-left: 5px;">&nbsp;&nbsp;To understand how to use this function, you need to understand what data we are using.Click to see the <a style='color:yellow' href="https://cuspcapstone2019.github.io/Data_Structure/">Dataset structure</a> in this project</p>
-						<p  style='font-size: 75%' "margin-left: 5px;">&nbsp;&nbsp;You might also want to see What is <a style='color:yellow' href="http://warrenpinnacle.com/prof/SLAMM/">SLAMM</a> if you don't understand what <span style = "color:aqua">[deterministic]</span> and <span style = "color:aqua">[Uncertainty]</span> mean</p>
+						<p  style='font-size: 75%' "margin-left: 5px;">&nbsp;&nbsp;To understand how to use this function, you need to understand what data we are using. Click to see the <a style='color:yellow' href="https://cuspcapstone2019.github.io/Data_Structure/">Dataset structure</a> in this project</p>
+						<p  style='font-size: 75%' "margin-left: 5px;">&nbsp;&nbsp;You might also want to see what is <a style='color:yellow' href="http://warrenpinnacle.com/prof/SLAMM/">SLAMM</a>, if you don't understand what either <span style = "color:aqua">[deterministic]</span> and <span style = "color:aqua">[Uncertainty]</span> mean</p>
 						</div>
-						<p>Click button in the tool box, if the button becomes orange, it means certain map is chosen to be shown.</p>
+						<p>Orange text means the button has been selected and is current</p>
 						
 						
-						<p>Such as <span style = "color:orange">[deterministic]</span> means certain deterministic layer will show. Why it does not show anything? Don't worry, to make it shows layer, you have to specify the <span style = "color:aqua">type
+						<p>Such as <span style = "color:orange">[deterministic]</span> means a deterministic layer is shown. Why it does not show anything? Don't worry, to make it show the layer, you have to specify the <span style = "color:aqua">type
 							
-						</span>and <span style = "color:aqua">time </span> </p>
-						<p>The certain map layer is identified by the app according to your selection of <span style = "color:aqua">type </span>, and whether to show the map</p>
+						</span>and <span style = "color:aqua">time </span>. </p>
+						
 						<div style='border: 1px solid white'>
 							<p style='font-size: 75%' "margin-left: 5px;">e.g.:<span style = 'color:orange'>[deterministic]</span> + [Low] + [2025] =<span style='color:aqua'>[deterministic result at low sea level rise rate in 2025] </span></p>
 							<p style='font-size: 75%' "margin-left: 5px;">e.g.:<span style = 'color:orange'>[Uncertainty]</span> + [New Coastal Marsh] + [2040] =<span style='color:aqua'>[Uncertainty result(New Coastal Marsh) in 2040] </span></p>
 							<p style='font-size: 75%' "margin-left: 5px;">e.g.:[Medium] + [School] + [2085] =<span style='color:aqua'>[The inundation result of school in NYC at medium SLR rate in 2085] </span></p>
 						</div>
-						<p>The vertical slider on the right hand side is for contorling the probability color visual display of Uncertainty map.In the Legend, you can see <img src="slider.png" >Any polygon above the slider current value will be shown as <span style = "color:aqua">
-							
-						auqa</span> Any polygon below 50 points of the slider current value will be invisible </p>
-						<p><img src="Play.png" > Use Animation button on infrastructures and see the change of inundation status arcoss year</p>
-						<p>Get confused with the color? click <img src="Legend.png" > to see the Legend of all layers you add.</p>
-						<p>Click <span style = "color:orange">[Parking lot]</span> and <span style = "color:orange">[SVI & Census Tract]</span> to show the layer right away!</p>
+						</br>
+						<div id="align_box">
+							<span>The vertical slider on the right hand side is for controlling the color of Uncertainty map, relating to probability. In the legend,any polygon above the top slider value will be shown as <span style = "color:aqua">
+								
+							aqua</span> Any polygon below 50 points of the slider current value will be invisible </span>
+						</div>
+						</br>
+						</br>
+						&nbsp;<img src="slider.png" >
+						</br>
+						</br>
+						</br>
+						<p><img src="Play.png" > Use the Animation button see the change of inundation status of infrastructure across time</p>
+						<p>Confused by the color? click <img src="Legend.png" > to see the Legend of layers you added.</p>
+						<p>Click <span style = "color:orange">[Parking lot]</span> and <span style = "color:orange">[SVI & Census Tract]</span> to show those layers as well.</p>
 						
-						<p>You can use the <span style = "color:orange">[Pluto Opacity slider]</span> to show the underlying pluto layer. Click back to <img src="Legend.png"> to see the color change with the opacity</p>
-						<p><span style = "color:aqua">[Clean Selection]</span> sets everything back to default. <span style = "color:red">Warning:</span> if you find this panel disappear, click <span style = "color:aqua">[Clean Selection]</span></p>
+						<p>You can use the <span style = "color:orange">[PLUTO Opacity slider]</span> to show the underlying PLUTO layer. Click back to <img src="Legend.png"> to see the opacity change</p>
+						<p><span style = "color:aqua">[Clean Selection]</span> sets everything back to default. <span style = "color:red">Warning:</span> If you want to see this panel again, click <span style = "color:aqua">[Clean Selection]</span></p>
 					</div>
 					
 					<ul class = 'sublist'>
@@ -195,7 +201,7 @@
 						</li>
 					</ul>
 					<div id="drawing">
-						<p><img src="draw.png" > button open a drawing tool box for you to interact with the data with the geometrical design you draw. Choose one of <img src="geometry.png" > to draw on the map. Double click to end the drawing. What happen? The things you draw generate charts on this panel automactically!(I will disappear) Glad you enable me to show up again by clicking <span style = "color:aqua">[Clean Selection]</span> </p>
+						<p><img src="draw.png" > button open a drawing tool box for you to interact with the data with any shape you want. Choose one of <img src="geometry.png" > to draw on the map. Double click to end the drawing. The geometry drawn by you will update this dashboard with relevant statistics in that area.</p>
 					</div>
 					<ul class = 'sublist'>
 						<li id ='b4' class ='controler'>
@@ -203,28 +209,31 @@
 						</li>
 					</ul>
 					<div id="dashboard">
-						<p>The charts visualization is based on the data query by the app according to the <span style = "color:orange">[Spatial Relationship you select]</span> Try different choices and the buffer slider to see what happen</p>
+						<p>The chart's visualization is based on the data query by the app according to the <span style = "color:orange">[Spatial Relationship you select]</span> Try different choices and the buffer slider to see how it changes</p>
 						
-						<p>You might notice that some charts do not show. That is because you are only querying the underlying layer now. [Map pluto] and [SVI Census Tract] are two underlying layers you can query at any time </p>
-						<p>Try to add <span style = "color:orange">[deterministic]</span> and <span style = "color:orange">[Ucertainty]</span> and draw an geometry on it to see the charts' change </p>
+						<p>You might notice that some dashboards charts do not show. That is because you are only querying the underlying layer now. [Map pluto] and [SVI Census Tract] are two underlying layers you can query at any time </p>
+						<p>Try to add <span style = "color:orange">[deterministic]</span> and <span style = "color:orange">[Ucertainty]</span> and draw a geometry on it to see the charts change.</p>
 					</div>
 					<ul class = 'sublist'>
 						<li id ='b5' class ='controler'>
-							Technique
+							Troubleshooting
 						</li>
 					</ul>
 					<div id="technique">
 						
-							<p>1.Reload the webpage if the app die</p>
-							<p>2.Display one layer from (deterministic, uncertainty) each time will give you the best result. Display them together will slower down the app</p>
-							<p>3.Animation is set to have 4s interval if you show deterministic result on the map. 1s if point infrastructure is display only</p>
-							<p>4.The chart generation speed is according to how large area you draw. Basically, The larger the area you draw, the slower the charts generate. Therefore, don't draw the whole city...</p>
-							<p>5.The chart generation speed is also affected by internet speed. The faster the internet, the faster it generate</p>
-							<p>6.If you draw a ploygon but some charts do not show up. It might because you did not choose to display deterministic or uncertainty and it might because there is not data to be query in the area you selected. </p>
-							<p>7.Zoom in to a smaller area will make deterministic and uncertainty result show up faster</p>
+							<p>1.Reload the webpage if the app dies</p>
+							<p>2.Displaying only one layer from (deterministic, uncertainty) each time will give you the best result. Displaying them together will slower down the app</p>
+							<p>3.Animation is set to have a 4 second interval if you show deterministic results on the map. 1 second if it displays point infrastructures only</p>
+
+							
+							<p>4.If you draw a ploygon but some charts do not show up. It might be because you did not choose to display deterministic or uncertainty and it might because there is no data to be queried in the area you selected. </p>
+							<p>5.Zooming in to a smaller area will make deterministic and uncertainty results show up faster</p>
 						
 					</div>
-					
+					<h4 id ='a3' class ='controler'>How the Flooding Planner was built</h4>
+					<p id = 'howbuilt'>The layout framwork of the tool is built by using dojo the Map and function inside the map are built by using Arcgis Javascript API.
+						We used ArcGIS online portal to host all of our data, which have already been cleaned.
+						The charts in the dashboard are built by d3.js and chart.js. The tool website is generated using github page.</p>
 					<h4 id= 'a5' class ='controler'>Who we are</h4>
 					<p id ='whowe'>This tool was developed by Andrew Hill, Chang Du, Haoming Yang, Sean Andrew Chen, and Yushi Chen for our NYU-Center for Urban Science and Progress Capstone Project titled “Tidal Wetland Conservation Options for Long-Term Land Use Planning for Sea Level Rise” on behalf of the New York City Department of Parks and Recreation.
 					</p>
@@ -339,7 +348,7 @@
 		</div>
 		
 		<div id="infoDiv" class = "esri-widget">
-			<b>Filter by geometry</b>
+			<b>Filter by Geometry</b>
 			</br>
 			Select the layers to filter on:
 			</br>
@@ -374,7 +383,7 @@
 				<option value="disjoint">disjoint</option> </select
 			  ><br /><br />
 			 <div class="tooltip">
-				 <label for="bufferNum">Buffer geometry in meters:</label>
+				 <label for="bufferNum">Buffer (in meters):</label>
 				<span id="bufferValueNum">0</span> <br />
 					0<input
 					  id="bufferNum"
@@ -438,13 +447,13 @@
 			 	<option value="low">Low</option>
 			 	<option value="low_medium">Low-Medium</option>
 			 	<option value="medium" >Medium</option>
-				 <option value="high_medium" >High-Meidum</option>
+				 <option value="high_medium" >High-Medium</option>
 				 <option value="high">High</option>
-				 <option value="low_inund" >Inundation:Low</option>
-				 <option value="low_medium_inund" >Inundation:Low-Medium</option>
-				 <option value="medium_inund" >Inundation:Medium</option>
-				 <option value="high_medium_inund" >Inundation:High_medium</option>
-				 <option value="high_inund" >Inundation:High</option>
+				 <option value="low_inund" >Inundation: Low</option>
+				 <option value="low_medium_inund" >Inundation: Low-Medium</option>
+				 <option value="medium_inund" >Inundation: Medium</option>
+				 <option value="high_medium_inund" >Inundation: Medium-High</option>
+				 <option value="high_inund" >Inundation: High</option>
 				</select> 
 				 <br /><br />
 			</div>  
@@ -472,21 +481,21 @@
 			  <div id="Point-Infrastructures">
 			  	<select id = "Point-Infrastructures-select" class="options">
 			  		<option id = 'infraselect' name = '' value = ''>Point Infrastructures</option>
-			  		<option name = 'FACILITYNA'value = 'db94437d7f1c49a59088a41215be8db3'>School</option>
-			  		<option name = 'NAME' value = 'a43269933234440eb92844bcf869de72'>Police Stations</option>
+			  		<option name = 'FACILITYNA'value = 'db94437d7f1c49a59088a41215be8db3'>Schools</option>
 			  		<option name = 'FACILITYNA' value = '91ce1f2fadc84b388e1106710d604e6e'>Airports</option>
-			  		<option name = 'NAME' value = '3ba337162f174888adfacfa76c08073c'>Electric_Power</option>
-			  		<option name = 'FACILITYNA' value = '5e51a68deca344eba793f65a65102238'>Fire_Stations</option>
-			  		<option name = 'FACILITYNA' value = '66de080d2b644f49bb9aa7c7197eba3e'>Medical_facilities</option>
+					<option name = 'NAME' value = 'cb9628a9c437447f9d883455236b24c0'>Railroad Stations</option>
+			  		<option name = 'NAME' value = '3ba337162f174888adfacfa76c08073c'>Power Stations</option>
+					<option name = ''  value = '0ccb805dd11d4d2eaf9667c36f6b26dc'>Water Facilities</option>
+			  		<option name = 'FACILITYNA' value = '5e51a68deca344eba793f65a65102238'>Fire Stations</option>
+					<option name = 'NAME' value = 'a43269933234440eb92844bcf869de72'>Police Stations</option>
+			  		<option name = 'FACILITYNA' value = '66de080d2b644f49bb9aa7c7197eba3e'>Medical Facilities</option>
 			  		<option name = 'NAME' value = '15451746e08742239592e23573e9080d'>NOAA Coastal Energy</option>
-			  		<option name = 'NAME' value = 'cb9628a9c437447f9d883455236b24c0'>Railroad Stations</option>
 			  		<option name = 'FACILITYNA'value = 'af29be1c18b44d62882a79319f2c1a8b'>SPDES</option>
-			  		<option name = 'NAME' value = 'fb66e223867f439ca8a4e213418ff109'>USACE_Projects</option>
-			  		<option name = ''  value = '0ccb805dd11d4d2eaf9667c36f6b26dc'>Water_Facilities</option></select
-			  	  ><br /><br />
+			  		<option name = 'NAME' value = 'fb66e223867f439ca8a4e213418ff109'>USACE Projects</option>
+			  		</select><br /><br />
 			  </div>
 
-			<button type="button" id = 'parkinglot'>Parking Lots</button>&nbsp &nbsp <button type="button" id = 'svi'>SVI & Census tract</button>
+			<button type="button" id = 'parkinglot'>Parking Lots</button>&nbsp &nbsp <button type="button" id = 'svi'>Social Vulnerability Index</button>
 			  <br /><br />
 			  <div class="opacity">
 			  	 <label for="pluto">Pluto Data Opacity</label>

@@ -482,28 +482,28 @@ const inund30 = {
 	};
 const inund60 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
-	  color: "rgb(84, 253, 208)",
+	  color: "rgb(102, 178, 255)",
 	  size:8,
 	};
 const inund90 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
-	  color: "rgb(255, 255, 0)",
-	  size:7,
+	  color: "rgb(150, 150, 255)",
+	  size:6,
 	};
 const inund120 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
 	  color: "rgb(254, 199, 0)",
-	  size:6,
+	  size:5,
 	};
 const inund150 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
 	  color: "rgb(254, 143, 0)",
-	  size:5,
+	  size:4,
 	};
 const inund255 = {
 	  type: "simple-marker", // autocasts as new SimpleLineSymbol()
 	  color: "rgb(171, 156, 0)",
-	  size:2,
+	  size:3,
 	};
 /*-----------------------------------
  set Renderer for point infra layer

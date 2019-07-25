@@ -1292,7 +1292,7 @@ var body = document.getElementById('border');
 						  .attr('class', 'd3-tip')
 						  .offset([-10, 0])
 						  .html(function(d) {
-							return "<strong style='color:black'>OwnerName:</strong><span style='color:red'>" + d.text + "</span></br><strong style='color:black'>Total shape area(square fts):</strong> <span style='color:red'>" + parseInt(leaderScale.invert(d.size)) + "</span>";
+							return "<strong style='color:black'>OwnerName:</strong><span style='color:red'>" + d.text + "</span></br><strong style='color:black'>Total shape area(square fts):</strong> <span style='color:red'>" + Math.round(100*(leaderScale.invert(d.size)))/100 + "</span>";
 						  })
 					cloud.call(tip)
 					function drawCloud(words) {
@@ -1432,9 +1432,9 @@ var body = document.getElementById('border');
 							const deterStats = result.features[0].attributes;
 							if (deterLayerViewFilterSelected){
 								updateChart(deterpolarChart, [
-								  deterStats.d05,
-								  deterStats.d06,
-								  deterStats.d08
+								  Math.round(100*(deterStats.d05))/100,
+								  Math.round(100*(deterStats.d06))/100,
+								  Math.round(100*(deterStats.d08))/100
 								]);
 							}
 							
@@ -1605,38 +1605,38 @@ var body = document.getElementById('border');
 					  // query.outFields = ['OwnerName']
 					  return featureLayerView.queryFeatures(query2).then(function(result) {
 						console.log(result)
-					    const allStats = result.features[0].attributes;
+					    const allStats = result.features[0].attributes; 
 					    updateChart(yearChart, [
-					      allStats.l01/43560,
-						  allStats.l04/43560,
-						  allStats.l05/43560,
-						  allStats.l06/43560,
-						  allStats.l07/43560,
-						  allStats.l08/43560,
-						  allStats.l09/43560,
-						  allStats.l10/43560,
-						  allStats.l11/43560,
-						  allStats.lTOTAL/43560,
+					      Math.round(100*(allStats.l01/43560))/100,
+						  Math.round(100*(allStats.l04/43560))/100,
+						  Math.round(100*(allStats.l05/43560))/100,
+						  Math.round(100*(allStats.l06/43560))/100,
+						  Math.round(100*(allStats.l07/43560))/100,
+						  Math.round(100*(allStats.l08/43560))/100,
+						  Math.round(100*(allStats.l09/43560))/100,
+						  Math.round(100*(allStats.l10/43560))/100,
+						  Math.round(100*(allStats.l11/43560))/100,
+						  Math.round(100*(allStats.lTOTAL/43560))/100,
 						  
 					    ]);
 						updateChart(materialChart, [
-						  allStats.OC/43560,
-						  allStats.OM/43560,
-						  allStats.OP/43560,
-						  allStats.OX/43560,
-						  allStats.OO/43560
+						  Math.round(100*(allStats.OC/43560))/100,
+						  Math.round(100*(allStats.OM/43560))/100,
+						  Math.round(100*(allStats.OP/43560))/100,
+						  Math.round(100*(allStats.OX/43560))/100,
+						  Math.round(100*(allStats.OO/43560))/100
 						]);
 						updateChart(valueChart, [
-						  allStats.V01/1000000,
-						  allStats.V04/1000000,
-						  allStats.V05/1000000,
-						  allStats.V06/1000000,
-						  allStats.V07/1000000,
-						  allStats.V08/1000000,
-						  allStats.V09/1000000,
-						  allStats.V10/1000000,
-						  allStats.V11/1000000,
-						  allStats.VTOTAL/1000000
+						  Math.round(100*(allStats.V01/1000000))/100,
+						  Math.round(100*(allStats.V04/1000000))/100,
+						  Math.round(100*(allStats.V05/1000000))/100,
+						  Math.round(100*(allStats.V06/1000000))/100,
+						  Math.round(100*(allStats.V07/1000000))/100,
+						  Math.round(100*(allStats.V08/1000000))/100,
+						  Math.round(100*(allStats.V09/1000000))/100,
+						  Math.round(100*(allStats.V10/1000000))/100,
+						  Math.round(100*(allStats.V11/1000000))/100,
+						  Math.round(100*(allStats.VTOTAL/1000000))/100
 						]);
 					  })
 					}
@@ -1874,31 +1874,31 @@ var body = document.getElementById('border');
 								let forth = allStats.below45000 + allStats.below50000
 								document.getElementById('population_select').innerHTML = allStats.population
 						  updateChart(languageChart, [
-						    100*allStats.OnlyEnglish/allStats.population,
-							  100*allStats.Spanish/allStats.population,
-							  100*allStats.French/allStats.population,
-							  100*allStats.German/allStats.population,
-							  100*allStats.Russian/allStats.population,
-							  100*allStats.Korean/allStats.population,
-							  100*allStats.Chinese/allStats.population,
-							  100*allStats.Vietnamese/allStats.population,
-							  100*allStats.Tagalog/allStats.population,
-							  100*allStats.Arabic/allStats.population,
-								100*other/allStats.population
+						    Math.round(100*(100*allStats.OnlyEnglish/allStats.population))/100,
+							  Math.round(100*(100*allStats.Spanish/allStats.population))/100,
+							  Math.round(100*(100*allStats.French/allStats.population))/100,
+							  Math.round(100*(100*allStats.German/allStats.population))/100,
+							  Math.round(100*(100*allStats.Russian/allStats.population))/100,
+							  Math.round(100*(100*allStats.Korean/allStats.population))/100,
+							  Math.round(100*(100*allStats.Chinese/allStats.population))/100,
+							  Math.round(100*(100*allStats.Vietnamese/allStats.population))/100,
+							  Math.round(100*(100*allStats.Tagalog/allStats.population))/100,
+							  Math.round(100*(100*allStats.Arabic/allStats.population))/100,
+								Math.round(100*(100*other/allStats.population))/100
 						    ]),
 							updateChart(incomeChart, [
-								  100*allStats.below10000/allStats.Totalincome,
-								  100*first/allStats.Totalincome,
-								  100*second/allStats.Totalincome,
-									100*third/allStats.Totalincome,
-									100*forth/allStats.Totalincome,
-									100*allStats.below60000/allStats.Totalincome,
-									100*allStats.below75000/allStats.Totalincome,
-									100*allStats.below100000/allStats.Totalincome,
-									100*allStats.below125000/allStats.Totalincome,
-									100*allStats.below150000/allStats.Totalincome,
-									100*allStats.below200000/allStats.Totalincome,
-									100*allStats.above200000/allStats.Totalincome,
+								   Math.round(100*(100*allStats.below10000/allStats.Totalincome))/100,
+								   Math.round(100*(100*first/allStats.Totalincome))/100,
+								   Math.round(100*(100*second/allStats.Totalincome))/100,
+									 Math.round(100*(100*third/allStats.Totalincome))/100,
+									 Math.round(100*(100*forth/allStats.Totalincome))/100,
+									 Math.round(100*(100*allStats.below60000/allStats.Totalincome))/100,
+									 Math.round(100*(100*allStats.below75000/allStats.Totalincome))/100,
+									 Math.round(100*(100*allStats.below100000/allStats.Totalincome))/100,
+									 Math.round(100*(100*allStats.below125000/allStats.Totalincome))/100,
+									 Math.round(100*(100*allStats.below150000/allStats.Totalincome))/100,
+									 Math.round(100*(100*allStats.below200000/allStats.Totalincome))/100,
+									 Math.round(100*(100*allStats.above200000/allStats.Totalincome))/100,
 								  ])
 						  })
 						}
@@ -1957,11 +1957,11 @@ var body = document.getElementById('border');
 						    const allStats = result.features[0].attributes;
 								uncertain_area.innerHTML =parseInt(allStats.TOTALarea)
 						    updateChart(uncertainChart, [
-						      allStats.below_30,
-							    allStats.below_50,
-							    allStats.below_70,
-							    allStats.below_90,
-							    allStats.below_100
+						      Math.round(100*(allStats.below_30))/100,
+							    Math.round(100*(allStats.below_50))/100,
+							    Math.round(100*(allStats.below_70))/100,
+							    Math.round(100*(allStats.below_90))/100,
+							    Math.round(100*(allStats.below_100))/100
 						    ]);
 							
 						  })
