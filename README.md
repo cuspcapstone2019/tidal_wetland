@@ -14,6 +14,7 @@ The WebGIS tools provide visualization and analysis function for various differe
 
 ## How to open the tools?
 To access the tool, you do not need to download anything. Just open this github page: https://cuspcapstone2019.github.io/tidal_wetland
+
 To download the code and open the tool on local, just clone the whole repo and use Browser to open the **index.html** file
 ## How the NYC Coastal Flooding Planner tool is built?
 The layout framwork of the tool is built by using [dojo](https://dojotoolkit.org/) 
