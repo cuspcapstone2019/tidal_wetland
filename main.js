@@ -1,4 +1,5 @@
 var body = document.getElementById('border');
+
 	require(["esri/symbols/SimpleFillSymbol",
 			"esri/renderers/smartMapping/creators/type",
 			"esri/Graphic",
@@ -296,18 +297,26 @@ var body = document.getElementById('border');
 					  			d3.select(this)
 					  			.style('color', 'orange')
 					  			convert()
-					  			map.add(deterlayer)
-								view.whenLayerView(deterlayer).then(function(layerView) {
+								if (deterLayerView){
+									deterlayer.opacity =1
+								}
+								else{
+								if (pointid!='1'){
+									map.add(deterlayer)
+									view.whenLayerView(deterlayer).then(function(layerView) {
 									deterLayerView = layerView;
-								});
-								let sketchLayer = new GraphicsLayer();
-								let bufferLayer = new GraphicsLayer();
-								view.map.addMany([bufferLayer, sketchLayer]);
+									});}
+									
+									let sketchLayer = new GraphicsLayer();
+									let bufferLayer = new GraphicsLayer();
+									view.map.addMany([bufferLayer, sketchLayer]);
+								}
+								
 					  		}
 					  		else{
 					  			d3.select(this)
 					  				.style('color', 'aqua')
-					  			map.remove(deterlayer)
+					  			deterlayer.opacity =0;
 					  		}
 					  		deter_box_show = !deter_box_show;
 					  		
@@ -357,22 +366,39 @@ var body = document.getElementById('border');
 							catch_slr = catchsvi_slr[pointid]
 							SLR_choice.innerHTML = this.options[index].innerHTML.toUpperCase();
 							update_point_visual();
+							console.log(pointid,pointyear)
 						//update deterministic result
-						let layerid = deterministic_layer[pointid][pointyear];
-						map.remove(deterlayer);
-						deterlayer= change_deter_layer(layerid)
+						if (pointid!='1'){
+							
+							let layerid = deterministic_layer[pointid][pointyear];
+							map.remove(deterlayer);
+							deterLayerView =null;
+							deterlayer= change_deter_layer(layerid)
+							console.log(1)
+							
+						}
+						else{
+							map.remove(deterlayer)
+							deterLayerView=null;
+							return;
+						}
 						
-						console.log(pointid,pointyear)
 						if (deter_box_show){
 							
-							map.add(deterlayer);
-						    view.whenLayerView(deterlayer).then(function(layerView) {
-						    	deterLayerView = layerView;
-							let sketchLayer = new GraphicsLayer();
-							let bufferLayer = new GraphicsLayer();
-							view.map.addMany([bufferLayer, sketchLayer]);
+						
+							try{
+								map.add(deterlayer);
+								view.whenLayerView(deterlayer).then(function(layerView) {
+									deterLayerView = layerView;
+								let sketchLayer = new GraphicsLayer();
+								let bufferLayer = new GraphicsLayer();
+								view.map.addMany([bufferLayer, sketchLayer]);
+								
+								});
+							}catch(e){
+								alert('Data Error, Please use another year and contact develop')//TODO handle the exception
+							}
 							
-							});
 						}
 							
 					})
