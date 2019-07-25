@@ -514,11 +514,11 @@ var pointRenderer = {
 	defaultSymbol: inund255, // used to visualize all features not matching specified types
 	defaultLabel: "not inundated" ,
 	uniqueValueInfos: [
-	{
-	  value: "-99", // code for interstates/freeways
-	  symbol: inund30,
-	  label: "inundated at least once every 30 days" // used in the legend to describe features with this symbol
-	},
+	// {
+	//   value: "-99", // code for interstates/freeways
+	//   symbol: inund30,
+	//   label: "inundated at least once every 30 days" // used in the legend to describe features with this symbol
+	// },
 	{
 	  value: "30", // code for interstates/freeways
 	  symbol: inund30,
