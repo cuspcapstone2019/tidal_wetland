@@ -298,14 +298,26 @@ var body = document.getElementById('border');
 					  			.style('color', 'orange')
 					  			convert()
 								if (deterLayerView){
-									deterlayer.opacity =1
+									if (deterlayer){
+										console.log('Deterministic Result showup')
+										deterlayer.opacity =1
+									}
+								
+									
 								}
 								else{
 								if (pointid!='1'){
-									map.add(deterlayer)
-									view.whenLayerView(deterlayer).then(function(layerView) {
-									deterLayerView = layerView;
-									});}
+									console.log('Please select SLR scenario')
+									if(deterlayer){
+										console.log('Deterministic Result is loading...')
+										map.add(deterlayer)
+										view.whenLayerView(deterlayer).then(function(layerView) {
+										deterLayerView = layerView;
+										});
+									}
+									
+									
+									}
 									
 									let sketchLayer = new GraphicsLayer();
 									let bufferLayer = new GraphicsLayer();
@@ -314,6 +326,7 @@ var body = document.getElementById('border');
 								
 					  		}
 					  		else{
+								console.log('Deterministic Result hide')
 					  			d3.select(this)
 					  				.style('color', 'aqua')
 					  			deterlayer.opacity =0;
@@ -335,7 +348,8 @@ var body = document.getElementById('border');
 								inundation_combination= point_infra_inundation[pointid][pointyear];}
 							}
 							else{
-								return;
+								var pointid_new = pointid.slice(0,-6)
+								inundation_combination= point_infra_inundation[pointid_new][pointyear]
 							}
 							
 							}
@@ -374,7 +388,7 @@ var body = document.getElementById('border');
 							map.remove(deterlayer);
 							deterLayerView =null;
 							deterlayer= change_deter_layer(layerid)
-							console.log(1)
+							console.log("Deterministic Reday to load, please check if [deterministic] button is activated")
 							
 						}
 						else{
@@ -385,19 +399,20 @@ var body = document.getElementById('border');
 						
 						if (deter_box_show){
 							
-						
-							try{
-								map.add(deterlayer);
-								view.whenLayerView(deterlayer).then(function(layerView) {
-									deterLayerView = layerView;
-								let sketchLayer = new GraphicsLayer();
-								let bufferLayer = new GraphicsLayer();
-								view.map.addMany([bufferLayer, sketchLayer]);
-								
-								});
-							}catch(e){
-								alert('Data Error, Please use another year and contact develop')//TODO handle the exception
+							console.log('Deterministic Result is loading...')
+							if (pointid == 'medium_inund'){
+								alert('Medium_inundation_Result in 2085 is still converting on the server. Please contact developer')
+								return;
 							}
+							map.add(deterlayer)
+							view.whenLayerView(deterlayer).then(function(layerView) {
+								deterLayerView = layerView;
+							let sketchLayer = new GraphicsLayer();
+							let bufferLayer = new GraphicsLayer();
+							view.map.addMany([bufferLayer, sketchLayer]);
+							
+							});
+							
 							
 						}
 							
@@ -443,7 +458,7 @@ var body = document.getElementById('border');
 						  type: "text", 
 						  color: "yellow",
 						  haloColor: "black",
-						  font: { family: "playfair-display",
+						  font: { family: "Arial",
 												size: 5,
 												weight: "bold"}},
 						labelPlacement: "above-center",
